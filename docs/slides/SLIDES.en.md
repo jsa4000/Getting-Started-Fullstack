@@ -3,8 +3,10 @@
 marp: true
 title: Fullstack
 description: A comprehensive guide to full-stack development, covering both front-end and back-end technologies, as well as essential tools and skills for modern web development.
+author: jsa4000
 theme: dark
 paginate: true
+headingDivider: 0
 class:
   - lead
 header: FullStack Development
@@ -15,7 +17,18 @@ footer: © 2026 Javier Santos - All rights reserved
 _paginate: skip
 _header: ""
 _footer: ""
+_class: title
 -->
+
+# FullStack Development
+
+## A comprehensive guide to full-stack development
+
+![bg opacity:.1 ](https://picsum.photos/720?image=27)
+
+---
+
+<!-- backgroundImage: "linear-gradient(to bottom, #000000, #222021)" -->
 
 ## Full-Stack Development
 
@@ -27,9 +40,8 @@ Full-stack isn’t tied to a **specific** tech stack; it refers to any developme
 
 ---
 
-<!-- backgroundImage: "linear-gradient(to bottom, #000000, #222021)" -->
-
-![drop-shadow opacity:.9 bg left](./images/2-Web-Application-Layers.webp)
+![drop-shadow opacity:.9 bg left](../images/2-Web-Application-Layers.webp)
+![bg opacity:.1 grayscale:1](https://picsum.photos/720?image=27)
 
 ## Front-end (Client-Side)
 
@@ -97,3 +109,56 @@ Technologies: Relational databases (MySQL, PostgreSQL) or NoSQL databases (Mongo
 ## Stacks
 
 ### MEAN vs MERN
+
+## SSR (Server-Side Rendering) vs SSG (Static Site Generation) vs CSR (Client-Side Rendering)
+
+---
+
+## Server Components
+
+<div class="columns">
+<div class="columns-left">
+
+### Column 1
+
+Content 1
+
+```yaml
+marp: true
+style: |
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .columns-left {
+    background: yellow;
+  }
+  .columns-right {
+    background: beige;
+  }
+```
+
+</div>
+<div class="columns-right">
+
+### Tantask Start
+
+In tanstack start, you can create server components by adding the `.server.tsx` extension to your component files. These components will only run on the server and can access server-side resources like databases or APIs without exposing them to the client.
+
+```ts
+import CardDemo from "@/components/card-demo";
+
+export default function Home() {
+  return (
+    <CardDemo />
+  );
+}
+```
+
+</div>
+</div>
+
+---
+
+## Server Actions

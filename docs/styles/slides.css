@@ -32,3 +32,65 @@ header {
 footer {
   bottom: 30px;
 }
+
+section.title {
+  --title-height: 130px;
+  --subtitle-height: 70px;
+
+  overflow: visible;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr var(--title-height) var(--subtitle-height) 1fr;
+  grid-template-areas: "." "title" "subtitle" ".";
+}
+
+section.title h1,
+section.title h2 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+  height: var(--area-height);
+  line-height: var(--area-height);
+  font-size: calc(var(--area-height) * 0.7);
+
+  border: 1px dashed gray; /* debug */
+  color: rgb(255, 255, 255)
+}
+
+section.title h1 {
+  grid-area: title;
+  --area-height: var(--title-height);
+}
+
+section.title h2 {
+  grid-area: subtitle;
+  font-weight: normal;
+  font-style: italic;
+  --area-height: var(--subtitle-height);
+}
+
+pre, code {
+  background-color: #272822 !important; 
+  color: #f8f8f2 !important;
+ 
+}
+
+.hljs-keyword {
+  color: #f92672;
+}
+.hljs-string {
+  color: #f8f8f2;
+}
+
+ .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .columns-left {
+   
+  }
+  .columns-right {
+   
+  }

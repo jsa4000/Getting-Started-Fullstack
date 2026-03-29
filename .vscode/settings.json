@@ -74,5 +74,11 @@
   "i18n-ally.enabledFrameworks": ["react-i18next"],
     "markdown.marp.themes": [
     "./docs/styles/slides.css"
-  ]
+  ],
+  "markdownlint.config": {
+    "MD033": {
+      "allowed_elements": ["style", "div"]
+    },
+    "MD025": false
+  }
 }
