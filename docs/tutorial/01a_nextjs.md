@@ -25,6 +25,8 @@ Creating a new Next.js app in /workspace/next-app.
 
 ```bash
 cd next-app
+
+pnpm install
 pnpm dev
 # Open http://localhost:3000
 ```

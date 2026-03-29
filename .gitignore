@@ -4,6 +4,7 @@
 node_modules
 .pnp
 .pnp.js
+.pnpm-store
 
 # Local env files
 .env
@@ -57,3 +58,7 @@ __pycache__
 # Logs
 !logs/.gitkeep
 logs
+
+# Custom
+next-app/
+tanstack-app/
