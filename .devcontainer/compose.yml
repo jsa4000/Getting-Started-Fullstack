@@ -1,0 +1,20 @@
+include:
+  - ../compose.yaml
+
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      #no_cache: true
+    env_file:
+      - path: ../.env
+        required: false
+    volumes:
+      # Mount only the necessary files
+      #- ../.devcontainer:/workspace/.devcontainer:cached
+      #- ../.vscode:/workspace/.vscode:cached
+      #- ../docs:/workspace/docs:cached
+      # Optionally, you can mount the entire workspace if needed
+      - ..:/workspace:cached
+    command: sleep infinity

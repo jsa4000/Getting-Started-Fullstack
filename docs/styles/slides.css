@@ -1,0 +1,34 @@
+/* @theme dark */
+
+@import 'default';
+
+section {
+  background: rgb(43, 9, 26);
+  color:rgb(255, 255, 255);
+  padding: 50px;
+  /* width: 960px;
+  height: 720px; */
+}
+
+/* Styling page number */
+section::after {
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+header,
+footer {
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  height: 20px;
+}
+
+header {
+  top: 30px;
+}
+
+footer {
+  bottom: 30px;
+}
