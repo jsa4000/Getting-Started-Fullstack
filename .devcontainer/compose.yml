@@ -12,9 +12,9 @@ services:
         required: false
     volumes:
       # Mount only the necessary files
-      #- ../.devcontainer:/workspace/.devcontainer:ro
-      #- ../.vscode:/workspace/.vscode:ro
-      #- ../docs:/workspace/docs:ro
+      - ../.devcontainer:/workspace/.devcontainer:cached
+      - ../.vscode:/workspace/.vscode:cached
+      - ../docs:/workspace/docs:ro
       # Optionally, you can mount the entire workspace if needed
-      - ..:/workspace:cached
+      #- ..:/workspace:cached
     command: sleep infinity
