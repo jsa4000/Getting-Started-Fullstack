@@ -23,6 +23,8 @@ pnpm dlx shadcn@latest init --preset [CODE] --template next
 
 ej:
 
+
+
 ```
 
 ## Components

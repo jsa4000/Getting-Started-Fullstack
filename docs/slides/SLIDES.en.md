@@ -9,6 +9,7 @@ paginate: true
 headingDivider: 0
 class:
   - lead
+  - invert
 header: FullStack Development
 footer: © 2026 Javier Santos - All rights reserved
 ---
