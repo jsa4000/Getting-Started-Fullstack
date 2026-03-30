@@ -2,6 +2,8 @@ import "./index.css";
 import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
+import { MacOSTerminal } from "./MacOSTerminal";
+import { WebApplicationLayers } from "./WebApplicationLayers";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -41,6 +43,45 @@ export const RemotionRoot: React.FC = () => {
           logoColor1: "#91dAE2" as const,
           logoColor2: "#86A8E7" as const,
         }}
+      />
+
+      <Composition
+        id="MacOSTerminal"
+        component={MacOSTerminal}
+        durationInFrames={150}
+        fps={30}
+        width={1280}
+        height={1000}
+        defaultProps={{
+          width: 1280,
+          height: 1000,
+          theme: "light",
+          showCursor: true,
+          rotateX: 20,
+        }}
+      />
+      <Composition
+        id="MacOSTerminalDark"
+        component={MacOSTerminal}
+        durationInFrames={150}
+        fps={30}
+        width={1280}
+        height={1000}
+        defaultProps={{
+          width: 1280,
+          height: 1000,
+          theme: "dark",
+          showCursor: true,
+          rotateX: 20,
+        }}
+      />
+      <Composition
+        id="WebApplicationLayers"
+        component={WebApplicationLayers}
+        durationInFrames={300}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );
