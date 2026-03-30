@@ -397,11 +397,13 @@ export default function Home() {
 
 ```html
 <!-- server output -->
-<div id="app"> <!-- pre-rendered HTML here --> </div>
+<div id="app"><!-- pre-rendered HTML here --></div>
 <script src="/assets/app.bundle.js"></script>
 <script>
   // client-side boot (pseudo)
-  import('/assets/app.bundle.js').then(({hydrate}) => hydrate(document.getElementById('app')))
+  import("/assets/app.bundle.js").then(({ hydrate }) =>
+    hydrate(document.getElementById("app")),
+  );
 </script>
 ```
 
@@ -413,15 +415,15 @@ export default function Home() {
 
 ```js
 // SSR (per-request)
-app.get('/post/:id', async (req,res)=>{
-  const post = await db.getPost(req.params.id)
-  res.send(renderToHtml(<Post post={post}/>))
-})
+app.get("/post/:id", async (req, res) => {
+  const post = await db.getPost(req.params.id);
+  res.send(renderToHtml(<Post post={post} />));
+});
 
 // SSG (build-time)
-const posts = await fetchAllPosts()
+const posts = await fetchAllPosts();
 for (const p of posts) {
-  writeFile(`/out/post/${p.id}.html`, renderToHtml(<Post post={p}/>))
+  writeFile(`/out/post/${p.id}.html`, renderToHtml(<Post post={p} />));
 }
 ```
 
@@ -433,16 +435,21 @@ for (const p of posts) {
 
 ```jsx
 // Server Component (pseudo)
-export default async function PostServer({id}){
-  const post = await db.getPost(id)
-  return <article><h1>{post.title}</h1><div>{post.body}</div></article>
+export default async function PostServer({ id }) {
+  const post = await db.getPost(id);
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <div>{post.body}</div>
+    </article>
+  );
 }
 
 // Server Action (pseudo)
-export async function createComment(formData){
-  const text = formData.get('text')
-  await db.insert({text})
-  return {ok: true}
+export async function createComment(formData) {
+  const text = formData.get("text");
+  await db.insert({ text });
+  return { ok: true };
 }
 ```
 
@@ -477,4 +484,3 @@ export async function createComment(formData){
 - Open for questions
 
 <!-- Speaker notes: Remaining time — invite specific questions about hydration, SSR, or deployment. -->
-
