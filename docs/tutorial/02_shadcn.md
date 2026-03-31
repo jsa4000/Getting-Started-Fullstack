@@ -17,13 +17,16 @@ pnpm dlx shadcn@latest init
 ✔ Select a component library › Radix
 ✔ Which preset would you like to use? › Nova
 
-# You can use directly the shadcn to initialize your Next.js project with the following command
-# https://ui.shadcn.com/create
+# You can create projeto usnig a preset and using the website https://ui.shadcn.com/create
 pnpm dlx shadcn@latest init --preset [CODE] --template next
 
-ej:
+# ej:
 
+# You can use directly the shadcn to initialize your Next.js project with the following command
+pnpm dlx shadcn@latest init --preset b43wxiCwt --template next
 
+# If you want to initialize a monorepo with turborepo and tanstack start, use the following command
+pnpm dlx shadcn@latest init --preset b43wxiCwt --template start --monorepo
 
 ```
 

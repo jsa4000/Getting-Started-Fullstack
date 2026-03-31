@@ -31,31 +31,38 @@ pnpm dev
 # Open http://localhost:3000
 ```
 
-## Demo
+## Create Pages, Components, API Routes, and Server Actions
 
-This short demo contains minimal, copy-pasteable examples you can drop into an App Router project (the `app/` directory). They demonstrate server components (default in App Router), server actions (form handlers), API routes, and the metadata/SEO API.
+Create following structure under `src/`, to add server/client components, server actions and routes:
+
+```txt
+└── src
+    ├── actions
+    ├── app
+    └── components
+```
 
 ### Server component (server-side by default)
 
 Server components are the default in the App Router, so if parent components don't have `use client` at the top, every component is a server component. They run on the server and can fetch data, access secrets, and return JSX.
 
-Create `app/components/CurrentTime.tsx`:
+Create `src/components/current-time.tsx`:
 
 ```tsx
 export default function CurrentTime() {
   const now = new Date().toISOString();
   return (
     <div>
-      <strong>Server time:</strong> {now}
+      <strong>Server time:</strong> <span>{now}</span>
     </div>
   );
 }
 ```
 
-Use it from a page (for example `app/page.tsx`):
+Use it from a page (for example `src/app/page.tsx`):
 
 ```tsx
-import CurrentTime from "./components/CurrentTime";
+import CurrentTime from "@/components/current-time.tsx";
 
 export default function Home() {
   return (
@@ -67,16 +74,33 @@ export default function Home() {
 }
 ```
 
+Use [tailwind](https://tailwindcss.com) for styling (optional):
+
+```tsx
+import CurrentTime from "@/components/current-time";
+
+export default function Home() {
+  return (
+    <main>
+      <h1 className="text-3xl font-bold">Home</h1>
+      <CurrentTime />
+    </main>
+  );
+}
+```
+
 Server components can run `server-only` code (DB calls, secrets, etc.) and return JSX directly.
+
+Check html returned from the server in the browser devtools to verify that the time is rendered on the server and not sent as client JS.
 
 ### Server action (form handler)
 
-Create a simple server action at `app/contact/actions.ts` and consume it from a page:
+Create a simple server action at `src/actions/contact.ts` and consume it from a page:
 
-```tsx
-// app/contact/actions.ts
+```ts
+"use server";
+
 export async function sendContact(formData: FormData) {
-  "use server";
   const name = formData.get("name")?.toString() ?? "";
   // Do server-side work (save to DB, send email, etc.)
   await fetch("https://httpbin.org/post", {
@@ -87,44 +111,121 @@ export async function sendContact(formData: FormData) {
 }
 ```
 
+Create a route `/contact` that uses the action (for example `src/app/contact/page.tsx`):
+
 ```tsx
-// app/contact/page.tsx
-import { sendContact } from "./actions";
+import { sendContact } from "@/actions/contact";
 
 export default function ContactPage() {
   return (
-    <form action={sendContact}>
+    <form action={sendContact} className="flex flex-row gap-2">
       <label>
         Name
         <input name="name" />
       </label>
-      <button type="submit">Send</button>
+      <button
+        className="bg-sky-600 border min-w-[200px] hover:bg-sky-900"
+        type="submit"
+      >
+        Send
+      </button>
     </form>
   );
 }
 ```
 
+Go to `http://localhost:3000/contact`, fill out the form, and submit. Check the network tab in devtools to see the request to the server action and verify that it runs without shipping client JS.
+
 When the form is submitted, the `sendContact` function runs on the server — it never ships as client JS.
+
+### Client Component (for interactivity)
+
+In client components you can use browser APIs and React hooks like `useState`. Mark a component as a client component by adding `"use client";` at the top:
+
+```tsx
+// `src/app/contact/page.tsx`
+"use client";
+
+import { useState } from "react";
+import { sendContact } from "@/actions/contact";
+
+export default function ContactPage() {
+  const [name, setName] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    await sendContact(formData);
+    setSubmitted(true);
+  }
+
+  return (
+    <div className="flex flex-col gap-2 max-w-sm mx-auto mt-10">
+      {submitted ? (
+        <div className="p-2">
+          Thank you for contacting us, {name || "user"}!
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <label className="flex gap-2 items-center">
+            Name
+            <input
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="border px-2 py-1 rounded"
+              required
+            />
+          </label>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Send
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+```
 
 ### API route (app/api)
 
-Create `app/api/hello/route.ts`:
+Create `src/app/api/health/route.ts`:
 
 ```ts
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  return NextResponse.json({ message: "Hello from API route" });
+  const randomValue = Math.floor(Math.random() * 1000);
+  const isHealty = randomValue % 2 === 0;
+  return NextResponse.json({ status: isHealty ? "OK" : "KO" });
 }
 ```
 
-Consume the API from a server component:
+Go to [http://localhost:3000/api/health](src/app/api/health) access the API route you just created. You should see the JSON response.
+
+Consume the API from a server component at `src/app/status/page.tsx`:
+
+> The name of the component file doesn't matter, but it must be in a subdirectory of `app/` that isn't `api/` (for example `app/status/page.tsx`) to avoid being treated as an API route. Also components must export a React component as default, while API routes export request handlers (like `GET`, `POST`, etc.) — this is how Next.js distinguishes between the two.
 
 ```tsx
+// `src/app/status/page.tsx`
 export default async function Page() {
-  const res = await fetch("http://localhost:3000/api/hello");
+  const res = await fetch("http://localhost:3000/api/health");
   const data = await res.json();
-  return <div>{data.message}</div>;
+  return (
+    <div>
+      <h1>Status Page</h1>
+      {data.status === "OK" ? (
+        <p className="text-green-500">System is healthy</p>
+      ) : (
+        <p className="text-red-500">System is unhealthy</p>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -134,9 +235,13 @@ export default async function Page() {
 
 You can define `async` helper functions inline in the same server component file. This is handy for small data-fetching helpers that are only used by one page.
 
-```tsx
-// app/posts/page.tsx
-async function getPosts() {
+Create following actions at `src/actions/posts.ts`:
+
+```ts
+// `src/actions/posts.ts`
+"use server";
+
+export async function getPosts() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
     // cache/revalidate options (optional)
     next: { revalidate: 60 },
@@ -145,15 +250,28 @@ async function getPosts() {
   return res.json();
 }
 
+export async function getPost(id: string) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) throw new Error("Failed to fetch post");
+  return res.json();
+}
+```
+
+```tsx
+// app/posts/page.tsx
+import { getPosts } from "@/actions/posts";
+
 export default async function PostsPage() {
   const posts = await getPosts();
   return (
     <main>
-      <h1>Posts (example)</h1>
+      <h1 className="text-2xl mb-2">Posts (example)</h1>
       <ul>
         {posts.slice(0, 10).map((p: any) => (
-          <li key={p.id}>
-            <h3>{p.title}</h3>
+          <li className="flex flex-row mt-2 gap-2" key={p.id}>
+            <h3 className="font-bold">{p.title}</h3>
             <p>{p.body}</p>
           </li>
         ))}
@@ -165,6 +283,82 @@ export default async function PostsPage() {
 
 This pattern keeps the data-fetching helper close to the component that uses it and leverages server-side rendering and caching provided by Next.js.
 
+### Layouts
+
+```tsx
+// app/posts/layout.tsx
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <header className="p-4 mb-4">
+        <h1 className="text-xl font-bold">My Blog</h1>
+      </header>
+      <main>{children}</main>
+      <footer className="p-4 mt-4">&copy; 2024 My Blog</footer>
+    </div>
+  );
+}
+```
+
+Layouts are reusable components that wrap pages and provide shared UI (headers, footers, etc.) and state. Create a `layout.tsx` file in any directory under `app/` to define a layout for that segment of the app.
+
+## Slugs
+
+```tsx
+// app/posts/[id]/page.tsx
+import { getPost } from "@/actions/posts";
+import { notFound } from "next/navigation";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  const post = await getPost(id);
+  if (!post) return notFound();
+  return (
+    <main className="p-4">
+      <h1 className="text-2xl font-bold mb-2">{post.title}</h1>
+      <p>{post.body}</p>
+    </main>
+  );
+}
+```
+
+Test it by going to `http://localhost:3000/posts/1` (or any number from 1 to 100, since the example API has 100 posts). You should see the post details. If you go to a non-existent post like `http://localhost:3000/posts/999`, you should see the 404 page.
+
+```tsx
+import { getPosts } from "@/actions/posts";
+import Link from "next/link";
+
+export default async function PostsPage() {
+  const posts = await getPosts();
+  return (
+    <main>
+      <h1 className="text-2xl mb-2">Posts (example)</h1>
+      <ul>
+        {posts.slice(0, 10).map((p: any) => (
+          <li className="flex flex-row mt-2 gap-2" key={p.id}>
+            <Link
+              href={`/posts/${p.id}`}
+              className="font-bold underline text-blue-600 hover:text-blue-800"
+            >
+              {p.title}
+            </Link>
+            <p>{p.body}</p>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
+```
+
 ### SEO / metadata
 
 Add per-page metadata by exporting `metadata` (or `generateMetadata`) from a page or layout.
@@ -172,14 +366,12 @@ Add per-page metadata by exporting `metadata` (or `generateMetadata`) from a pag
 ```ts
 // app/blog/page.tsx
 export const metadata = {
-  title: 'Demo — Blog',
-  description: 'A short demo of the Next.js metadata API',
+  title: "Demo — Blog",
+  description: "A short demo of the Next.js metadata API",
 };
-
-export default function Page() {
-  return <div>Blog index</div>;
-}
 ```
+
+Check inspector / page source to verify that the title and description are rendered in the HTML head.
 
 For dynamic data, use `generateMetadata`:
 
@@ -189,25 +381,3 @@ export async function generateMetadata({ params }) {
   return { title: post.title, description: post.excerpt };
 }
 ```
-
-### Client component quick note
-
-If a component needs browser APIs or interactivity, mark it as a client component at the top with `use client`:
-
-```tsx
-"use client";
-import { useState } from "react";
-
-export default function Counter() {
-  const [n, setN] = useState(0);
-  return <button onClick={() => setN((x) => x + 1)}>Count: {n}</button>;
-}
-```
-
-### Try it
-
-- Create the files above under `app/` in a Next.js App Router project.
-- Run the dev server: `pnpm dev` and open `http://localhost:3000`.
-- Experiment: submit the contact form, inspect the API at `/api/hello`, and verify metadata in page source / browser devtools.
-
-These examples are intentionally minimal. Want me to also scaffold an example `app/` folder in this repo with all files created and working? I can add that next.
