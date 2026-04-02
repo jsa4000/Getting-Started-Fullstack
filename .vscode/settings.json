@@ -72,7 +72,9 @@
   "i18n-ally.namespace": true,
   "i18n-ally.keystyle": "nested",
   "i18n-ally.enabledFrameworks": ["react-i18next"],
-    "markdown.marp.themes": [
+  "markdown.marp.html": "default",
+  "markdown.marp.exportType": "pptx",
+  "markdown.marp.themes": [
     "./docs/styles/slides.css"
   ],
   "markdownlint.config": {

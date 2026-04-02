@@ -94,3 +94,32 @@ pre, code {
   .columns-right {
    
   }
+  .timeline {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+section table {
+  width: 100%;
+}
+
+section th,
+section td {
+  white-space: nowrap;
+}
+
+section td:last-child,
+section th:last-child {
+  white-space: normal;
+  width: 100%;
+}
+
+table { width: 100%; background: transparent !important; }
+
+table tr,
+table thead tr,
+table tbody tr,
+table th,
+table td { background: transparent !important; }
+
+th:first-child, td:first-child { width: 8%; white-space: nowrap; }
