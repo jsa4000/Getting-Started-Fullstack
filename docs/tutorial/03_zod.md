@@ -405,6 +405,74 @@ Test `SignupSchema.safeParse({ password: "Secret1!", confirm: "wrong" })` and ch
 
 ## Capstone: Validating a Next.js Server Action
 
+Handle errors in server components by validating inputs with Zod and returning error details to the client. This keeps your server robust and your client informed without crashing.
+
+```tsx
+// `src/app/contact/page.tsx`
+"use client";
+
+import { useState } from "react";
+import { sendContact } from "@/actions/contact";
+
+export default function ContactPage() {
+  const [name, setName] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    const formData = new FormData(e.currentTarget);
+    const result = await sendContact(formData);
+    if (result && result.error) {
+      setError(
+        typeof result.error === "string"
+          ? result.error
+          : JSON.stringify(result.error),
+      );
+      setSubmitted(false);
+    } else {
+      setSubmitted(true);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2 max-w-sm mx-auto mt-10">
+      {submitted ? (
+        <div className="p-2">
+          Thank you for contacting us, {name || "user"}!
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <label className="flex gap-2 items-center">
+            Name
+            <input
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="border px-2 py-1 rounded"
+              required
+            />
+          </label>
+          {/* Error message */}
+          {error && (
+            <div className="text-red-600 text-sm border border-red-200 bg-red-50 rounded p-2">
+              {error}
+            </div>
+          )}
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Send
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+```
+
 Tie everything together with a real form action. Create `src/actions/contact.ts`:
 
 ```ts
@@ -446,6 +514,99 @@ export async function sendContact(formData: FormData) {
 Consume it from a page (`src/app/contact/page.tsx`) — see [01a_nextjs.md](01a_nextjs.md) for the full page setup. The key pattern: pass raw `FormData` to the action, validate with `.safeParse()`, and return errors to the client without ever trusting the input.
 
 Submit the form with an invalid email in the browser and verify the server logs the `z.prettifyError` output rather than crashing.
+
+In order to properly pass the `name` value to the success message, we need to lift the `name` state up to the `ContactPage` component and update it on input change. The full `ContactPage` component would look like this:
+
+```tsx
+// `src/app/contact/page.tsx`
+"use client";
+
+import { useState } from "react";
+import { sendContact } from "@/actions/contact";
+
+export default function ContactPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    const formData = new FormData(e.currentTarget);
+    const result = await sendContact(formData);
+    if (result && result.error) {
+      setError(
+        typeof result.error === "string"
+          ? result.error
+          : JSON.stringify(result.error),
+      );
+      setSubmitted(false);
+    } else {
+      setSubmitted(true);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2 max-w-sm mx-auto mt-10">
+      {submitted ? (
+        <div className="p-2">
+          Thank you for contacting us, {name || "user"}!
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <label className="flex gap-2 items-center">
+            Name
+            <input
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="border px-2 py-1 rounded"
+              required
+            />
+          </label>
+          <label className="flex gap-2 items-center">
+            Email
+            <input
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="border px-2 py-1 rounded"
+              required
+            />
+          </label>
+          <label className="flex flex-col gap-1">
+            Message
+            <textarea
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="border px-2 py-1 rounded min-h-[80px]"
+              required
+              minLength={10}
+              maxLength={500}
+            />
+          </label>
+          {/* Error message */}
+          {error && (
+            <div className="text-red-600 text-sm border border-red-200 bg-red-50 rounded p-2">
+              {error}
+            </div>
+          )}
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Send
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+```
 
 ---
 
