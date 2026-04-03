@@ -43,7 +43,6 @@
     "source.organizeImports.biome": "explicit"
   },
   "tailwindCSS.classAttributes": ["className", ".*ClassName", ".*Styles"],
-  "tailwindCSS.experimental.configFile": "apps/app/src/globals.css",
   "search.exclude": {
     "**/node_modules/**": true,
     "**/.next/**": true,
@@ -74,9 +73,7 @@
   "i18n-ally.enabledFrameworks": ["react-i18next"],
   "markdown.marp.html": "default",
   "markdown.marp.exportType": "pptx",
-  "markdown.marp.themes": [
-    "./docs/styles/slides.css"
-  ],
+  "markdown.marp.themes": ["./docs/styles/slides.css"],
   "markdownlint.config": {
     "MD033": {
       "allowed_elements": ["style", "div"]
