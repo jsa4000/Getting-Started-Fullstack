@@ -168,6 +168,9 @@ import { db } from "@/db";
 import { contacts } from "@/db/schema";
 import { ContactSchema } from "@/types/contact";
 
+// Alias for compatibility with previous code examples
+export const sendContact = createContact;
+
 export async function createContact(formData: FormData) {
   const raw = {
     name: formData.get("name"),
@@ -196,6 +199,142 @@ export async function updateContact(
 
 export async function getContactById(id: number) {
   return db.select().from(contacts).where(eq(contacts.id, id));
+}
+```
+
+Add following code in `src/app/contact/page.tsx` to use the server actions and display contacts:
+
+```tsx
+// `src/app/contact/page.tsx`
+"use client";
+
+import { useEffect, useState } from "react";
+import { getContacts, sendContact } from "@/actions/contact";
+import type { Contact } from "@/db/schema";
+
+export default function ContactPage() {
+  // Client state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Client-side contacts state
+  const [contacts, setContacts] = useState<Contact[]>([]);
+
+  // Fetch contacts on mount
+  useEffect(() => {
+    (async () => {
+      const data = await getContacts();
+      setContacts(data);
+    })();
+  }, []);
+
+  // Refetch contacts only after a successful submit
+  useEffect(() => {
+    if (!submitted) return;
+    (async () => {
+      const data = await getContacts();
+      setContacts(data);
+    })();
+  }, [submitted]);
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    const formData = new FormData(e.currentTarget);
+    const result: { error?: unknown; success?: boolean } =
+      await sendContact(formData);
+    if (result?.error) {
+      setError(
+        typeof result.error === "string"
+          ? result.error
+          : JSON.stringify(result.error),
+      );
+      setSubmitted(false);
+    } else {
+      setSubmitted(true);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2 max-w-sm mx-auto mt-10">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <label className="flex gap-2 items-center">
+          Name
+          <input
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border px-2 py-1 rounded"
+            required
+          />
+        </label>
+        <label className="flex gap-2 items-center">
+          Email
+          <input
+            name="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border px-2 py-1 rounded"
+            required
+          />
+        </label>
+        <label className="flex flex-col gap-1">
+          Message
+          <textarea
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="border px-2 py-1 rounded min-h-20"
+            required
+            minLength={10}
+            maxLength={500}
+          />
+        </label>
+        {/* Error message */}
+        {error && (
+          <div className="text-red-600 text-sm border border-red-200 bg-red-50 rounded p-2">
+            {error}
+          </div>
+        )}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Send
+        </button>
+      </form>
+
+      {submitted && (
+        <div className="p-2">
+          Thank you for contacting us, {name || "user"}!
+        </div>
+      )}
+
+      <div className="mt-8">
+        <h2 className="font-bold mb-2">All Contacts</h2>
+        <ul className="space-y-2">
+          {contacts.map((contact) => (
+            <li key={contact.id} className="border rounded p-2">
+              <div>
+                <span className="font-semibold">Name:</span> {contact.name}
+              </div>
+              <div>
+                <span className="font-semibold">Email:</span> {contact.email}
+              </div>
+              <div>
+                <span className="font-semibold">Message:</span>{" "}
+                {contact.message}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 }
 ```
 
