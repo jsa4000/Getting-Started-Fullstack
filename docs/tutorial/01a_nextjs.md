@@ -82,6 +82,7 @@ export default function Home() {
 Use [tailwind](https://tailwindcss.com) for styling (optional):
 
 ```tsx
+// COPY: next-app/src/app/page.tsx
 import CurrentTime from "@/components/current-time";
 
 export default function Home() {
@@ -103,6 +104,7 @@ Check html returned from the server in the browser devtools to verify that the t
 Create a simple server action at `src/actions/contact.ts` and consume it from a page:
 
 ```ts
+// COPY: next-app/src/actions/contact.ts
 "use server";
 
 export async function sendContact(formData: FormData) {

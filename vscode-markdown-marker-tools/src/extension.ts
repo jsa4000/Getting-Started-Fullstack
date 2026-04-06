@@ -202,7 +202,13 @@ export function activate(context: vscode.ExtensionContext) {
         fs.mkdirSync(path.dirname(absoluteFilePath), { recursive: true });
         fs.writeFileSync(absoluteFilePath, content + "\n", "utf8");
 
-        await vscode.window.showTextDocument(vscode.Uri.file(absoluteFilePath));
+        const openFile = vscode.workspace
+          .getConfiguration("markdownMarkerTools")
+          .get<boolean>("openFileAfterCreate", false);
+        if (openFile) {
+          await vscode.window.showTextDocument(vscode.Uri.file(absoluteFilePath));
+        }
+
         vscode.window.showInformationMessage(
           `${fileExists ? "Updated" : "Created"}: ${relativeFilePath}`,
         );

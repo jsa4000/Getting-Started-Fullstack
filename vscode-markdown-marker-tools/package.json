@@ -14,6 +14,16 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Markdown Marker Tools",
+      "properties": {
+        "markdownMarkerTools.openFileAfterCreate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Open the file in the editor after creating or updating it via a COPY marker."
+        }
+      }
+    },
     "commands": [
       {
         "command": "copyMarkerToFile.create",
