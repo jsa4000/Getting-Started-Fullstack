@@ -117,7 +117,7 @@ export default defineConfig({
     url: env.DATABASE_URL,
   },
   migrations: {
-    schema: "public",
+    schema: "postgres",
   },
   strict: true,
   verbose: true,

@@ -12,9 +12,12 @@ services:
         required: false
     volumes:
       # Mount only the necessary files
-      # - ../.devcontainer:/workspace/.devcontainer:cached
-      # - ../.vscode:/workspace/.vscode:cached
-      # - ../docs:/workspace/docs:ro
+      - ../vscode-markdown-marker-tools:/workspace/vscode-markdown-marker-tools:cached
+      - ../.devcontainer:/workspace/.devcontainer:cached
+      - ../.vscode:/workspace/.vscode:cached
+      - ../docs:/workspace/docs:ro
+      - ../.env.example:/workspace/.env.example:ro
+      - ../compose.yaml:/workspace/compose.yaml:ro
       # Optionally, you can mount the entire workspace if needed
-      - ..:/workspace:cached
+      # - ..:/workspace:cached
     command: sleep infinity
