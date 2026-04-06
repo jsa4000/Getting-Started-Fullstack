@@ -3,6 +3,7 @@
 ## Create a Project
 
 ```bash
+# TERM:
 pnpm create next-app@ next-app
 ```
 
@@ -24,6 +25,7 @@ Creating a new Next.js app in /workspace/next-app.
 ## Run the Project
 
 ```bash
+# TERM:
 cd next-app
 
 pnpm install

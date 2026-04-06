@@ -30,8 +30,8 @@ Supported comment styles: `// COPY:`, `# COPY:`, `/* COPY: */`
 
 ### Option A — Install the `.vsix` directly (no build needed)
 
-1. Copy `copy-marker-to-file-0.0.1.vsix` to the target machine.
-2. Open VS Code and run: `code --install-extension copy-marker-to-file-0.0.1.vsix`
+1. Copy `vscode-markdown-marker-tools-0.0.1.vsix` to the target machine.
+2. Open VS Code and run: `code --install-extension vscode-markdown-marker-tools-0.0.1.vsix`
    Or via the UI: **Extensions** sidebar → `···` menu → **Install from VSIX…** → select the file.
 3. Reload the window when prompted.
 
@@ -40,7 +40,7 @@ Supported comment styles: `// COPY:`, `# COPY:`, `/* COPY: */`
 Requirements: [Node.js](https://nodejs.org) ≥ 20, [pnpm](https://pnpm.io)
 
 ```bash
-cd vscode-copy-marker-to-file
+cd vscode-markdown-marker-tools
 
 # Install dependencies
 pnpm install
@@ -56,7 +56,7 @@ Then install the generated `.vsix` as in Option A.
 
 ```bash
 # Install the generated .vsix file
-code --install-extension copy-marker-to-file-0.0.1.vsix
+code --install-extension vscode-markdown-marker-tools-0.0.1.vsix
 ```
 
 ---
@@ -64,7 +64,7 @@ code --install-extension copy-marker-to-file-0.0.1.vsix
 ## Project structure
 
 ```txt
-copy-marker-to-file/
+vscode-markdown-marker-tools/
 ├── src/
 │   └── extension.ts       # Extension source (TypeScript)
 ├── out/
@@ -72,5 +72,5 @@ copy-marker-to-file/
 ├── package.json           # Extension manifest
 ├── tsconfig.json          # TypeScript config
 ├── pnpm-lock.yaml         # Dependency lock file
-└── copy-marker-to-file-0.0.1.vsix   # Packaged extension (ready to install)
+└── vscode-markdown-marker-tools-0.0.1.vsix   # Packaged extension (ready to install)
 ```

@@ -1,7 +1,7 @@
 {
-  "name": "copy-marker-to-file",
-  "displayName": "Copy Marker to File",
-  "description": "Detects // COPY: path comments in code and shows a CodeLens to create/update that file",
+  "name": "vscode-markdown-marker-tools",
+  "displayName": "Markdown Marker Tools",
+  "description": "Detects various makers in code and shows a CodeLens to create/update that file",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.110.0"
