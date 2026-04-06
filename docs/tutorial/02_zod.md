@@ -5,6 +5,7 @@
 ## Install
 
 ```bash
+# TERM:
 pnpm add zod
 ```
 
@@ -408,7 +409,7 @@ Test `SignupSchema.safeParse({ password: "Secret1!", confirm: "wrong" })` and ch
 Handle errors in server components by validating inputs with Zod and returning error details to the client. This keeps your server robust and your client informed without crashing.
 
 ```tsx
-// `src/app/contact/page.tsx`
+// COPY: next-app/src/app/contact/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -476,7 +477,7 @@ export default function ContactPage() {
 Tie everything together with a real form action. Create `src/actions/contact.ts`:
 
 ```ts
-// src/actions/contact.ts
+// COPY: next-app/src/actions/contact.ts
 "use server";
 
 import { z } from "zod";
@@ -518,7 +519,7 @@ Submit the form with an invalid email in the browser and verify the server logs 
 In order to properly pass the `name` value to the success message, we need to lift the `name` state up to the `ContactPage` component and update it on input change. The full `ContactPage` component would look like this:
 
 ```tsx
-// `src/app/contact/page.tsx`
+// COPY: next-app/src/app/contact/page.tsx
 "use client";
 
 import { useState } from "react";

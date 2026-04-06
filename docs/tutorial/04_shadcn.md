@@ -11,16 +11,22 @@ The installation instructions for Next.js are available on the [shadcn website](
 Follow the prompts to set up your Next.js project with shadcn.
 
 ```bash
+# TERM:
 pnpm dlx shadcn@latest init
 
 # For noe use radix component library and nova preset
-✔ Select a component library › Radix
-✔ Which preset would you like to use? › Nova
+# ✔ Select a component library › Radix
+# ✔ Which preset would you like to use? › Nova
+```
+
+You can also use the following command to initialize your Next.js project with shadcn:
+
+```bash
 
 # You can create projeto usnig a preset and using the website https://ui.shadcn.com/create
 pnpm dlx shadcn@latest init --preset [CODE] --template next
 
-# ej:
+# examples
 
 # You can use directly the shadcn to initialize your Next.js project with the following command
 pnpm dlx shadcn@latest init --preset b43wxiCwt --template next
@@ -35,8 +41,16 @@ pnpm dlx shadcn@latest init --preset b43wxiCwt --template start --monorepo
 After the installation, you can start adding components to your project. For example, to add a button component, run the following command:
 
 ```bash
+# TERM:
+
 # To add components to your project, run the following command:
 pnpm dlx shadcn@latest add button label badge
+```
+
+Or you can install all shadnc componentes at once by using `-a` flag.
+
+```bash
+# TERM:
 
 # To add all components to your project, run the following command:
 pnpm dlx shadcn@latest add -a
@@ -45,6 +59,7 @@ pnpm dlx shadcn@latest add -a
 Create a `CardDemo` component in the `components` folder and add the following code to it:
 
 ```ts
+// COPY: next-app/src/components/card-demo.tsx
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -113,6 +128,7 @@ export default function CardDemo() {
 Add CardDemo component to main `page.tsx`.
 
 ```ts
+// COPY: next-app/src/app/page.tsx
 import CardDemo from "@/components/card-demo";
 
 export default function Home() {

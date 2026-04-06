@@ -5,6 +5,7 @@
 Run the starter CLI to scaffold a new app. The interactive flow asks for project name, package manager, and optional add-ons (Query, auth, DB integrations, etc.).
 
 ```bash
+# TERM:
 npx @tanstack/cli create my-app
 ```
 
@@ -28,6 +29,7 @@ npx @tanstack/cli create my-app --router-only
 After creation install deps (if not installed automatically) and start the dev server:
 
 ```bash
+# TERM:
 cd my-app
 pnpm install
 pnpm dev
@@ -39,6 +41,7 @@ pnpm dev
 Some add-ons (auth, DB hosts, API keys) require env vars. After creation:
 
 ```bash
+# TERM:
 cp .env.example .env
 # Edit .env with your values
 ```

@@ -7,6 +7,7 @@ This tutorial will guide you through installing and configuring Drizzle ORM for 
 ## 1. Install Drizzle and PostgreSQL Driver
 
 ```bash
+# TERM:
 pnpm add drizzle-orm pg @t3-oss/env-nextjs dotenv dotenv-expand
 pnpm add -D drizzle-kit tsx @types/pg
 ```
@@ -21,6 +22,11 @@ pnpm add -D drizzle-kit tsx @types/pg
 
 Rename `.env.example` to `.env` and add your PostgreSQL connection string:
 
+```bash
+# TERM:
+cp ../.env.example ../.env
+```
+
 ```txt
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
 ```
@@ -28,6 +34,7 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
 Create a database connection utility and configure environment variables.
 
 ```ts
+// COPY: next-app/src/env.ts
 import { createEnv } from "@t3-oss/env-nextjs";
 import { config } from "dotenv";
 import { expand } from "dotenv-expand";
@@ -45,9 +52,9 @@ export const env = createEnv({
   },
   client: {
     // Good
-    // NEXT_PUBLIC_BACKEND_URL: z.string().min(1).optional(),
-    // Bad
-    NEXT_PUBLIC_BACKEND_URL: z.string().min(1),
+    NEXT_PUBLIC_BACKEND_URL: z.string().min(1).optional(),
+    // Bad: NEXT_PUBLIC_BACKEND_URL environment variable must be initially set
+    // NEXT_PUBLIC_BACKEND_URL: z.string().min(1),
   },
   // For Next.js >= 13.4.4, you only need to destructure client variables:
   experimental__runtimeEnv: {
@@ -61,6 +68,7 @@ export const env = createEnv({
 Create `src/db/index.ts`:
 
 ```ts
+// COPY: next-app/src/db/index.ts
 import { drizzle } from "drizzle-orm/node-postgres";
 import { env } from "@/env";
 
@@ -75,6 +83,7 @@ export const db = drizzle(env.DATABASE_URL!);
 Create `src/db/schema.ts`:
 
 ```ts
+// COPY: next-app/src/db/schema.ts
 import { pgTable, serial, varchar, text } from "drizzle-orm/pg-core";
 
 export const contacts = pgTable("contacts", {
@@ -96,6 +105,7 @@ Create a `drizzle.config.ts` file in the root of your project and add the follow
 > Rename .env.example to .env and update the `DATABASE_URL` with your PostgreSQL connection string.
 
 ```ts
+// COPY: next-app/drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 import { env } from "@/env";
 
@@ -106,6 +116,10 @@ export default defineConfig({
   dbCredentials: {
     url: env.DATABASE_URL,
   },
+  migrations: {
+    schema: "public",
+  },
+  strict: true,
   verbose: true,
 });
 ```
@@ -113,12 +127,14 @@ export default defineConfig({
 **a. Initialize Drizzle Kit:**
 
 ```bash
+# TERM:
 npx drizzle-kit generate:pg
 ```
 
 **b. Add migration scripts and run them:**
 
 ```bash
+# TERM:
 npx drizzle-kit push:pg
 ```
 
@@ -137,6 +153,7 @@ npx drizzle-kit push:pg
 ```
 
 ```bash
+# TERM:
 pnpm run db:generate
 pnpm run db:migrate
 ```
@@ -148,6 +165,7 @@ pnpm run db:migrate
 Create a Zod schema for validation in `src/types/contact.ts`:
 
 ```ts
+// COPY: next-app/src/types/contact.ts
 import { z } from "zod";
 
 export const ContactSchema = z.object({
@@ -162,6 +180,7 @@ export type ContactInput = z.infer<typeof ContactSchema>;
 **b. Server Action Example (`src/actions/contact.ts`):**
 
 ```ts
+// COPY: next-app/src/actions/contact.ts
 "use server";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
@@ -205,7 +224,7 @@ export async function getContactById(id: number) {
 Add following code in `src/app/contact/page.tsx` to use the server actions and display contacts:
 
 ```tsx
-// `src/app/contact/page.tsx`
+// COPY: next-app/src/app/contact/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";

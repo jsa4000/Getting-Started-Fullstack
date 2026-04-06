@@ -121,6 +121,7 @@ export async function sendContact(formData: FormData) {
 Create a route `/contact` that uses the action (for example `src/app/contact/page.tsx`):
 
 ```tsx
+// COPY: next-app/src/app/contact/page.tsx
 import { sendContact } from "@/actions/contact";
 
 export default function ContactPage() {
@@ -150,7 +151,7 @@ When the form is submitted, the `sendContact` function runs on the server — it
 In client components you can use browser APIs and React hooks like `useState`. Mark a component as a client component by adding `"use client";` at the top:
 
 ```tsx
-// `src/app/contact/page.tsx`
+// COPY: next-app/src/app/contact/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -203,6 +204,7 @@ export default function ContactPage() {
 Create `src/app/api/health/route.ts`:
 
 ```ts
+// COPY: next-app/src/app/api/health/route.ts
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -212,14 +214,14 @@ export async function GET() {
 }
 ```
 
-Go to [http://localhost:3000/api/health](src/app/api/health) access the API route you just created. You should see the JSON response.
+Go to [http://localhost:3000/api/health](http://localhost:3000/api/health) access the API route you just created. You should see the JSON response.
 
 Consume the API from a server component at `src/app/status/page.tsx`:
 
 > The name of the component file doesn't matter, but it must be in a subdirectory of `app/` that isn't `api/` (for example `app/status/page.tsx`) to avoid being treated as an API route. Also components must export a React component as default, while API routes export request handlers (like `GET`, `POST`, etc.) — this is how Next.js distinguishes between the two.
 
 ```tsx
-// `src/app/status/page.tsx`
+// COPY: next-app/src/app/status/page.tsx
 export default async function Page() {
   const res = await fetch("http://localhost:3000/api/health");
   const data = await res.json();
@@ -245,7 +247,7 @@ You can define `async` helper functions inline in the same server component file
 Create following actions at `src/actions/posts.ts`:
 
 ```ts
-// `src/actions/posts.ts`
+// COPY: next-app/src/actions/posts.ts
 "use server";
 
 export async function getPosts() {
@@ -267,7 +269,7 @@ export async function getPost(id: string) {
 ```
 
 ```tsx
-// app/posts/page.tsx
+// COPY: next-app/src/app/posts/page.tsx
 import { getPosts } from "@/actions/posts";
 
 export default async function PostsPage() {
@@ -290,10 +292,12 @@ export default async function PostsPage() {
 
 This pattern keeps the data-fetching helper close to the component that uses it and leverages server-side rendering and caching provided by Next.js.
 
+Go to [http://localhost:3000/posts](http://localhost:3000/posts)
+
 ### Layouts
 
 ```tsx
-// app/posts/layout.tsx
+// COPY: next-app/src/app/posts/layout.tsx
 export default async function Layout({
   children,
 }: {
@@ -316,7 +320,7 @@ Layouts are reusable components that wrap pages and provide shared UI (headers, 
 ## Slugs
 
 ```tsx
-// app/posts/[id]/page.tsx
+// COPY: next-app/src/app/posts/[id]/page.tsx
 import { getPost } from "@/actions/posts";
 import { notFound } from "next/navigation";
 
@@ -340,6 +344,7 @@ export default async function Page({ params }: PageProps) {
 Test it by going to `http://localhost:3000/posts/1` (or any number from 1 to 100, since the example API has 100 posts). You should see the post details. If you go to a non-existent post like `http://localhost:3000/posts/999`, you should see the 404 page.
 
 ```tsx
+// COPY: next-app/src/app/posts/page.tsx
 import { getPosts } from "@/actions/posts";
 import Link from "next/link";
 
