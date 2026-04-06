@@ -2,7 +2,7 @@
 # https://marpit.marp.app/markdown
 marp: true
 title: Fullstack
-description: Una guía completa para el desarrollo full-stack, que cubre tecnologías de front-end y back-end, así como herramientas y habilidades esenciales para el desarrollo web moderno.
+description: Una guía completa de desarrollo full‑stack, cubriendo tecnologías de frontend y backend, así como herramientas y habilidades esenciales para el desarrollo web moderno.
 author: jsa4000
 theme: dark
 paginate: true
@@ -10,11 +10,11 @@ headingDivider: 0
 class:
   - lead
   - invert
-header: Desarrollo FullStack
-footer: © 2026 Javier Santos - Todos los derechos reservados
+header: FullStack Development
+footer: © 2026 Javier Santos - All rights reserved
 ---
 
-<!-- NOTE: Para exportar diagramas Mermaid, abre este archivo en VS Code con la extensión Marp para VS Code y usa "Export Slide Deck" → PDF o HTML. Los bloques Mermaid se renderizan mediante @mermaid-js/mermaid-core durante la exportación. -->
+<!-- NOTE: To export Mermaid diagrams, open this file in VS Code with the Marp for VS Code extension and use "Export Slide Deck" → PDF or HTML. Mermaid blocks are rendered via @mermaid-js/mermaid-core during export. -->
 
 <!--
 _paginate: skip
@@ -23,9 +23,9 @@ _footer: ""
 _class: title
 -->
 
-# Desarrollo FullStack
+# FullStack Development
 
-## Una guía completa para el desarrollo full-stack
+## Una guía completa de desarrollo full‑stack
 
 ![bg opacity:.1 ](https://picsum.photos/720?image=27)
 
@@ -35,19 +35,19 @@ _class: title
 
 ## Historia de la Web
 
-| Año      | Hito                                                        |
-| -------- | ----------------------------------------------------------- |
-| **1991** | HTML estático — Tim Berners-Lee crea la Web                 |
-| **1995** | JavaScript y PHP — comienzan las páginas dinámicas          |
-| **2005** | Ajax y Web 2.0 — apps asíncronas impulsadas por el usuario  |
-| **2009** | Node.js — JavaScript en el servidor                         |
-| **2015** | React y ES6 — era de SPA, interfaces basadas en componentes |
-| **2019** | Jamstack — emergen Next.js, Nuxt y SvelteKit                |
-| **2026** | Desarrollo asistido por IA — React Server Components, Edge  |
+| Año      | Hito                                                                 |
+| -------- | -------------------------------------------------------------------- |
+| **1991** | HTML estático — Tim Berners‑Lee crea la Web                          |
+| **1995** | JavaScript y PHP — comienzan las páginas dinámicas                   |
+| **2005** | Ajax y Web 2.0 — aplicaciones asincrónicas y centradas en el usuario |
+| **2009** | Node.js — JavaScript en el servidor                                  |
+| **2015** | React y ES6 — era SPA, UIs basadas en componentes                    |
+| **2019** | Jamstack — surgen Next.js, Nuxt, SvelteKit                           |
+| **2026** | Desarrollo asistido por IA — Server Components y runtimes en el edge |
 
 ---
 
-## El Desarrollador Fullstack
+## El desarrollador Fullstack
 
 <div class="columns">
 <div class="columns-left">
@@ -63,13 +63,13 @@ _class: title
 </div>
 <div class="columns-right">
 
-### Amplitud (Forma de T)
+### Amplitud (T-Shape)
 
-- Git, pipelines de CI/CD
+- Git, pipelines CI/CD
 - Docker y despliegue en la nube
-- Seguridad básica (auth, HTTPS, CORS)
+- Fundamentos de seguridad (autenticación, HTTPS, CORS)
 - Fundamentos de UX y accesibilidad
-- Observabilidad (logs, métricas, trazabilidad)
+- Observabilidad (logs, métricas, trazas)
 
 </div>
 </div>
@@ -81,10 +81,10 @@ _class: title
 <div class="columns">
 <div class="columns-left">
 
-**Web Tradicional**
+**Web tradicional**
 
 - El servidor renderiza HTML, el navegador lo muestra
-- Un solo código: plantillas + lógica de backend
+- Una única base de código: plantillas + lógica backend
 - Ejemplos: PHP / Rails / Django
 
 **API + UI**
@@ -99,40 +99,40 @@ _class: title
 **Móvil + Web**
 
 - Backend compartido para apps web y nativas
-- Misma capa de API, diferentes frontends
+- Misma capa API, frontends distintos
 - React Native, Expo, Flutter
 
-**Cloud-Native**
+**Cloud‑Native**
 
 - Funciones serverless + servicios gestionados
 - Sin servidor tradicional que mantener
-- Edge-first, distribuido globalmente
+- Enfoque edge, distribución global
 
 </div>
 </div>
 
 ---
 
-## Fullstack en Contexto
+## Fullstack en contexto
 
-| Contexto          | Enfoque                      | Opciones Típicas              |
-| ----------------- | ---------------------------- | ----------------------------- |
-| Startup / Solo    | Avanzar rápido, mínimas ops  | Next.js + Supabase + Vercel   |
-| Equipo en crecim. | Velocidad + estabilidad      | NestJS + React + monorepo     |
-| Empresa           | Gobernanza, integración      | Angular + Spring + Kubernetes |
-| Freelancer        | Amplitud, variedad de client | Lo que se adapte al proyecto  |
+| Contexto              | Enfoque                        | Opciones típicas                   |
+| --------------------- | ------------------------------ | ---------------------------------- |
+| Startup / Solo        | Mover rápido, mínima operación | Next.js + Supabase + Vercel        |
+| Equipo en crecimiento | Velocidad + estabilidad        | NestJS + React + monorepo          |
+| Empresa               | Gobernanza, integración        | Angular + Spring + Kubernetes      |
+| Freelancer            | Amplitud, variedad de clientes | Lo que mejor encaje en el proyecto |
 
-> El stack "correcto" depende del tamaño del equipo, el presupuesto y la etapa de crecimiento — no del hype.
+> La pila "correcta" depende del tamaño del equipo, presupuesto y etapa de crecimiento — no del hype.
 
 ---
 
-## Desarrollo Full-Stack
+## Desarrollo Full‑Stack
 
 ![bg opacity:.1 grayscale:1](https://picsum.photos/720?image=27)
 
-El **Desarrollo Full-Stack** es el proceso de desarrollar una aplicación web tanto en el lado del **cliente** (**front-end**) como en el lado del **servidor** (**back-end**). Un Desarrollador Full-Stack es competente en todas las capas del desarrollo web, lo que le permite manejar un proyecto desde el concepto hasta la producción.
+El **Desarrollo Full‑Stack** es el proceso de construir una aplicación web tanto en el **lado del cliente** (**front-end**) como en el **lado del servidor** (**back-end**). Un desarrollador full‑stack domina las capas necesarias para llevar un proyecto desde el concepto hasta producción.
 
-El desarrollo full-stack no está ligado a un stack **específico**; se refiere a cualquier desarrollo que cubra tanto el front-end como el back-end. De hecho, `MEAN` y `MERN` son subconjuntos del desarrollo full-stack; son combinaciones de tecnologías full-stack.
+Full‑stack no está ligado a una pila tecnológica **concreta**; se refiere a cualquier trabajo que abarque front‑end y back‑end. Por ejemplo, `MEAN` y `MERN` son combinaciones tecnológicas que caen dentro del full‑stack.
 
 [RoadMap](https://roadmap.sh/full-stack)
 
@@ -140,30 +140,30 @@ El desarrollo full-stack no está ligado a un stack **específico**; se refiere 
 
 ![drop-shadow opacity:.9 bg left:33%](../images/2-Web-Application-Layers.webp)
 
-## Front-end (Lado del Cliente)
+## Frontend (lado del cliente)
 
-Esta es la capa visible para el usuario, construida con tecnologías que se ejecutan en el navegador. Gestiona la interfaz de usuario (UI) y la experiencia de usuario (UX).
+Esta es la capa visible al usuario, construida con tecnologías que se ejecutan en el navegador. Se encarga de la interfaz (UI) y la experiencia de usuario (UX).
 
 ---
 
-## Capas de la Arquitectura de una App Web
+## Capas de arquitectura de una aplicación web
 
 <div class="mermaid">
 flowchart LR
     subgraph Client["🖥 Cliente (Navegador)"]
-        UI["Componentes UI"]
-        SM["Gestión de Estado"]
-        CR["Router del Cliente"]
+        UI["UI Components"]
+        SM["State Management"]
+        CR["Client Router"]
     end
-    subgraph Server["⚙ Servidor / Edge"]
+    subgraph Server["⚙ Server / Edge"]
         API["Capa API"]
-        BL["Lógica de Negocio"]
-        Sec["Auth y Seguridad"]
+        BL["Lógica de negocio"]
+        Sec["Autenticación y seguridad"]
     end
-    subgraph Data["💾 Capa de Datos"]
-        DB[("SQL / NoSQL")]
-        Cache[("Caché / Redis")]
-        FS[("Almacenamiento de Archivos")]
+    subgraph Data["💾 Capa de datos"]
+      DB[("SQL / NoSQL")]
+      Cache[("Cache / Redis")]
+      FS[("Almacenamiento de archivos")]
     end
     Client -->|"HTTP / WebSocket"| Server
     Server --> Data
@@ -171,17 +171,17 @@ flowchart LR
 
 ---
 
-## Frameworks del Lado del Cliente (UI y Estado)
+## Frameworks del lado del cliente (UI y estado)
 
-Se ejecutan principalmente en el navegador del usuario para crear interfaces interactivas.
+Estos se ejecutan principalmente en el navegador para crear interfaces interactivas.
 
-- **React**: Desarrollado por Meta, es técnicamente una librería enfocada en construir componentes UI reutilizables usando un "Virtual DOM" para actualizaciones eficientes. Es ampliamente adoptado y tiene un ecosistema enorme de herramientas de terceros.
-- **Angular**: Un framework completo y con "baterías incluidas" de Google. Usa TypeScript por defecto y provee soluciones integradas para routing, formularios y gestión de estado, siendo un estándar para aplicaciones empresariales a gran escala.
-- **Svelte**: A diferencia de React o Angular, Svelte es un compilador. Traslada el trabajo del navegador a una etapa de compilación, generando JavaScript "vanilla" altamente optimizado con mínima sobrecarga en tiempo de ejecución y excelente rendimiento.
+- **React**: Desarrollado por Meta; es técnicamente una librería para construir componentes UI reutilizables usando un "Virtual DOM" para actualizaciones eficientes. Tiene una adopción masiva y un gran ecosistema.
+- **Angular**: Framework integral de Google. Usa TypeScript por defecto y ofrece soluciones integradas para routing, formularios y gestión de estado, siendo habitual en aplicaciones empresariales de gran escala.
+- **Svelte**: A diferencia de React o Angular, Svelte es un compilador. Traslada trabajo al paso de build, generando JavaScript "vanilla" optimizado con muy poca sobrecarga en tiempo de ejecución.
 
 ---
 
-## Frameworks Frontend: Comparación de Código
+## Frontend Frameworks: Code Comparison
 
 <div class="columns">
 <div class="columns-left">
@@ -193,7 +193,7 @@ function Counter() {
   const [count, setCount] = useState(0);
   return (
     <button onClick={() => setCount((c) => c + 1)}>
-      Pulsado {count} veces
+      Clicked {count} times
     </button>
   );
 }
@@ -224,36 +224,36 @@ export class CounterComponent {
 </script>
 
 <button on:click={() => count++}>
-  Pulsado {count} veces
+  Clicked {count} times
 </button>
 ```
 
-Los tres logran el mismo resultado — se diferencian en el modelo de ejecución, compilador vs. DOM virtual y convenciones de DX.
+Los tres logran el mismo resultado: difieren en el modelo de ejecución, compilador vs. virtual DOM, y convenciones de DX.
 
 </div>
 </div>
 
 ---
 
-## Herramientas de CSS y Estilos
+## CSS y herramientas de estilo
 
-- **Tailwind CSS** — utilidades primero; compón estilos directamente en el markup
-- **CSS Modules** — nombres de clase con alcance, sin fugas globales
-- **shadcn/ui** — componentes copy-paste construidos sobre Radix UI + Tailwind
+- **Tailwind CSS** — enfoque utility‑first; componer estilos directamente en el marcado
+- **CSS Modules** — clases con alcance local, sin contaminación global
+- **shadcn/ui** — componentes listos para copiar, basados en Radix UI + Tailwind
 
 ```tsx
 // Tailwind
 <button className="rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-700">
-  Enviar
+  Submit
 </button>;
 
 // CSS Module
 import styles from "./Button.module.css";
-<button className={styles.primary}>Enviar</button>;
+<button className={styles.primary}>Submit</button>;
 
 // shadcn/ui
 import { Button } from "@/components/ui/button";
-<Button variant="default">Enviar</Button>;
+<Button variant="default">Submit</Button>;
 ```
 
 ---
@@ -267,27 +267,27 @@ section {
 ![bg right:33%](https://picsum.photos/720?image=3)
 ![bg](https://picsum.photos/720?image=20)
 
-## Backend (Lado del Servidor)
+## Backend (lado del servidor)
 
-El Back-end es el motor de la aplicación, manejando la lógica de negocio, la autenticación de usuarios y sirviendo datos al frontend. Consta de tres subcapas:
+El backend es el motor de la aplicación: gestiona la lógica de negocio, la autenticación y sirve datos al frontend. Se compone de tres subcapas:
 
-1. **Capa API**: Recibe solicitudes del frontend (vía HTTP) y envía respuestas.
-2. **Capa de Lógica de Negocio**: La lógica de procesamiento central que determina la funcionalidad de la aplicación.
-3. **Otras Tecnologías**: Lenguajes del lado del servidor (Node.js, Python, Java, PHP) y frameworks (Express.js, Django, Ruby on Rails).
-
----
-
-## Frameworks del Lado del Servidor (Backend y APIs)
-
-Se ejecutan en un servidor o en el "edge" para manejar datos, autenticación y peticiones API.
-
-- **Express**: El veterano de la industria para Node.js. Es un framework minimalista y sin opiniones que da a los desarrolladores total libertad para estructurar sus aplicaciones.
-- **NestJS**: Un framework de grado empresarial construido sobre Express (o Fastify). Impone una arquitectura modular inspirada en Angular, utilizando decoradores e inyección de dependencias para mantener grandes bases de código.
-- **Hono**: Un framework moderno y ultrarrápido diseñado específicamente para runtimes "Edge" como Cloudflare Workers, Bun y Deno. Es extremadamente ligero (menos de 14kB) y usa APIs web estándar para máxima velocidad.
+1. **Capa API**: Recibe peticiones del frontend (por HTTP) y devuelve respuestas.
+2. **Lógica de negocio**: El procesamiento central que define la funcionalidad.
+3. **Otras tecnologías**: Lenguajes del lado servidor (Node.js, Python, Java, PHP) y frameworks (Express, Django, Rails).
 
 ---
 
-## Frameworks Backend: Comparación de Código
+## Frameworks del lado servidor (Backend y APIs)
+
+These run on a server or at the "edge" to handle data, authentication, and API requests.
+
+- **Express**: Veterano en Node.js. Framework minimalista y sin opinión fuerte, que permite libertad total para estructurar aplicaciones.
+- **NestJS**: Framework de nivel empresarial construido sobre Express/Fastify. Promueve una arquitectura modular inspirada en Angular, con decoradores e inyección de dependencias.
+- **Hono**: Framework moderno y ultrarrápido pensado para runtimes "edge" (Cloudflare Workers, Bun, Deno). Muy ligero y basado en APIs Web estándar.
+
+---
+
+## Backend Frameworks: Code Comparison
 
 <div class="columns">
 <div class="columns-left">
@@ -309,7 +309,7 @@ app.listen(3000);
 </div>
 <div class="columns-right">
 
-**NestJS (estructurado)**
+**NestJS (structured)**
 
 ```ts
 @Controller("users")
@@ -323,7 +323,7 @@ export class UsersController {
 }
 ```
 
-NestJS añade decoradores, DI y módulos sobre Express — mejor a escala, más boilerplate al principio.
+NestJS adds decorators, DI, and modules on top of Express — better at scale, more boilerplate upfront.
 
 </div>
 </div>
@@ -332,19 +332,19 @@ NestJS añade decoradores, DI y módulos sobre Express — mejor a escala, más 
 
 ![bg opacity:.1 grayscale:1](https://picsum.photos/720?image=27)
 
-### Base de Datos (Capa de Almacenamiento)
+### Bases de datos (capa de almacenamiento)
 
-|            | SQL                       | NoSQL                             |
-| ---------- | ------------------------- | --------------------------------- |
-| Estructura | Esquema rígido, tablas    | Flexible, documento/clave-valor   |
-| Ejemplos   | PostgreSQL, MySQL         | MongoDB, Redis, DynamoDB          |
-| Ideal para | Relaciones, transacciones | Escala, formas de datos flexibles |
+|            | SQL                       | NoSQL                              |
+| ---------- | ------------------------- | ---------------------------------- |
+| Estructura | Esquema rígido, tablas    | Flexible, documentos/clave‑valor   |
+| Ejemplos   | PostgreSQL, MySQL         | MongoDB, Redis, DynamoDB           |
+| Ideal para | Relaciones, transacciones | Escala y formas de datos flexibles |
 
 ---
 
 **ORMs / ODMs**
 
-Drizzle (type-safe, SQL-first), Prisma (schema-first), Mongoose (MongoDB)
+Drizzle (tipo‑safe, SQL‑first), Prisma (schema‑first), Mongoose (MongoDB)
 
 <div class="mermaid">
 erDiagram
@@ -365,9 +365,9 @@ erDiagram
         int postId FK
         int userId FK
     }
-    USER ||--o{ POST : "escribe"
-    POST ||--o{ COMMENT : "tiene"
-    USER ||--o{ COMMENT : "escribe"
+    USER ||--o{ POST : "writes"
+    POST ||--o{ COMMENT : "has"
+    USER ||--o{ COMMENT : "writes"
 </div>
 
 ---
@@ -382,7 +382,7 @@ erDiagram
 - **MEAN**: MongoDB · Express · Angular · Node.js
 - **MERN**: MongoDB · Express · React · Node.js
 
-Stacks NoSQL-first — esquemas flexibles, JSON de extremo a extremo
+Pilas orientadas a NoSQL — esquemas flexibles y JSON de extremo a extremo
 
 </div>
 <div class="columns-right">
@@ -391,14 +391,14 @@ Stacks NoSQL-first — esquemas flexibles, JSON de extremo a extremo
 
 - **PERN**: PostgreSQL · Express · React · Node.js
 
-Stack relacional — datos estructurados, consistencia fuerte, poder de SQL
+Pila relacional — datos estructurados, consistencia y potencia SQL
 
 </div>
 </div>
 
 ---
 
-## Stacks Comunes de un Vistazo
+## Common Stacks at a Glance
 
 <div class="mermaid">
 flowchart LR
@@ -406,7 +406,7 @@ flowchart LR
         M1["React"] --> M2["Express + Node.js"] --> M3[("MongoDB")]
     end
 
-    subgraph PERN["PERN — Relacional"]
+    subgraph PERN["PERN — Relational"]
         P1["React"] --> P2["Express + Node.js"] --> P3[("PostgreSQL")]
     end
 
@@ -418,9 +418,9 @@ flowchart LR
 
 ---
 
-## Currículo Fullstack
+## Currículum Fullstack
 
-El desarrollador full-stack moderno debe estar familiarizado con una amplia gama de tecnologías y conceptos, incluyendo:
+The modern full-stack developer should be familiar with a wide range of technologies and concepts, including:
 
 - Fundamentos esenciales de HTML, CSS y JavaScript
 - Frameworks frontend (React, Vue, Angular, Svelte)
@@ -428,234 +428,234 @@ El desarrollador full-stack moderno debe estar familiarizado con una amplia gama
 - Frameworks backend: Express, NestJS, Fastify
 - Bases de datos SQL y NoSQL
 - Prisma, Drizzle, Mongoose (ORM/ODM)
-- Next.js como el framework fullstack más importante
+- Next.js como framework full‑stack destacado
 - TailwindCSS y shadcn/ui
 - Integración con IA: Cursor, Claude, GPT, Gemini
 - Stacks modernos (MERN, PERN, Next.js + Prisma)
-- Opciones extra: serverless, apps de escritorio y móvil con JS
+- Opciones extra: serverless, aplicaciones de escritorio y móvil con JS
 
 ---
 
-# Evolución Full-Stack y Renderizado Moderno
+# Evolución Full‑Stack y renderizado moderno
 
-**De HTML → HTML5 → React/Next.js — estrategias de renderizado y características modernas del servidor**
+**De HTML → HTML5 → React/Next.js — estrategias de renderizado y características servidor modernas**
 
 ![bg opacity:.12](https://picsum.photos/1024/576?image=1050)
 
-<!-- Speaker notes: 30s — Bienvenida, presentar el tema y los objetivos. Explicar el nivel del público (principiantes) y la duración (45–60 minutos). Mencionar preguntas al final. -->
+<!-- Speaker notes: 30s — Welcome, introduce topic and goals. Explain audience level (beginners) and duration (45–60 minutes). Mention Q&A at the end. -->
 
 ---
 
 ## Agenda
 
-- Línea de tiempo de evolución (HTML → frameworks)
+- Línea temporal de la evolución (HTML → frameworks)
 - Estrategias de renderizado: CSR, SSR, SSG, ISR
-- Técnicas modernas del servidor: Server Components, Server Actions, streaming
-- Ejemplos, checklist de rendimiento y lecturas adicionales
+- Técnicas de servidor modernas: Server Components, Server Actions, streaming
+- Ejemplos, checklist de rendimiento y lecturas recomendadas
 
-<!-- Speaker notes: 45–60s — Recorrer la agenda. Explicar que se usarán analogías y fragmentos de código cortos (no ejecutables). -->
-
----
-
-## Por qué Importa el Renderizado
-
-- Velocidad percibida (primera pintura vs. interactividad)
-- SEO y descubribilidad (motores de búsqueda, vistas previas en redes sociales)
-- Compensaciones del desarrollador: complejidad, coste y mantenibilidad
-
-<!-- Speaker notes: 1m — Usa una analogía: las páginas son como comidas de restaurante — primera vista (LCP) vs. qué tan rápido puedes comer (TTI). Diferentes estrategias cambian tanto la presentación como la preparación. -->
+<!-- Speaker notes: 45–60s — Walk through agenda. Explain we will use analogies and short code snippets (non-runnable). -->
 
 ---
 
-## Línea de Tiempo Rápida
+## Por qué el renderizado importa
 
-- Páginas HTML estáticas (web temprana)
-- HTML5 + APIs del navegador (fetch, history, SW)
-- Era SPA (JS pesado en el cliente)
-- Frameworks híbridos y regreso al renderizado en servidor
+- Velocidad percibida (first paint vs. interactividad)
+- SEO y descubribilidad (motores de búsqueda, vistas previas sociales)
+- Compromisos para desarrolladores: complejidad, coste y mantenibilidad
 
-<!-- Speaker notes: 1m — Dar una historia de una línea explicando por qué surgieron los frameworks: la interactividad y las experiencias tipo app demandaron lógica de cliente más rica. -->
+<!-- Speaker notes: 1m — Use an analogy: pages are like restaurant meals — first sight (LCP) vs. how fast you can actually eat (TTI). Different rendering strategies change both plating and preparation. -->
 
 ---
 
-## HTML Estático (Web Temprana)
+## Línea temporal rápida
 
-- Páginas basadas en archivos servidas tal cual desde el host
-- Pros: simple, rápido en CDN, superficie segura reducida
+- Páginas HTML estáticas (web inicial)
+- HTML5 y APIs del navegador (fetch, history, SW)
+- Era SPA (JS pesado en cliente)
+- Frameworks híbridos y retorno al renderizado en servidor
+
+<!-- Speaker notes: 1m — Give a one-line history explaining why frameworks emerged: interactivity and app-like experiences demanded richer client logic. -->
+
+---
+
+## HTML estático (web temprana)
+
+- Páginas basadas en archivos servidas tal cual
+- Pros: simple, rápidas desde CDN, superficie de ataque reducida
 - Contras: interactividad limitada, actualizaciones manuales
 
-<!-- Speaker notes: 45s — Mencionar ejemplos: blogs tempranos, sitios corporativos estáticos. Ideal para contenido que raramente cambia. -->
+<!-- Speaker notes: 45s — Mention examples: early blogs, static company sites. Great for content that rarely changes. -->
 
 ---
 
-## Renderizado Clásico en el Servidor (SSR)
+## Renderizado tradicional en servidor (SSR)
 
-- Las plantillas renderizan HTML por solicitud (PHP, Rails)
-- Pros: buen SEO, primera pintura rápida, el servidor tiene contexto completo
-- Contras: carga del servidor por solicitud, mayor tiempo-hasta-interactividad para clientes pesados
+- Plantillas que renderizan HTML por petición (PHP, Rails)
+- Pros: buen SEO, first paint rápido, el servidor tiene contexto completo
+- Contras: carga por petición en el servidor, mayor time‑to‑interactive en clientes pesados
 
-<!-- Speaker notes: 1m — Enfatizar cómo el SSR genera HTML completo en cada solicitud y cómo eso ayuda a los rastreadores y dispositivos de bajo rendimiento. -->
-
----
-
-## Scripting del Lado del Cliente y Mejora Progresiva
-
-- Añadir JS para mejorar la UX preservando el HTML base
-- Enfoque compatible y accesible
-- A menudo infravalorado en el pensamiento SPA-first
-
-<!-- Speaker notes: 1m — Explicar la mejora progresiva: servir buen HTML primero, agregar JS para comportamientos más ricos. Mejora la resiliencia y accesibilidad. -->
+<!-- Speaker notes: 1m — Emphasize how SSR outputs complete HTML on each request and how that helps crawlers and low-powered devices. -->
 
 ---
 
-## HTML5 y APIs del Navegador (Por qué el Navegador se Volvió más Inteligente)
+## Client-Side Scripting & Progressive Enhancement
 
-- Fetch, History API, Módulos, Service Workers
-- Habilitaron experiencias offline, routing y control de red más granular
+- Add JS to enhance UX while preserving baseline HTML
+- Compatible and accessible approach
+- Often under-appreciated in SPA-first thinking
 
-<!-- Speaker notes: 45s — Resumen rápido de las primitivas modernas del navegador que hicieron las características del cliente más fáciles y robustas. -->
-
----
-
-## Era SPA: React / Vue / Angular
-
-- Un solo bundle inicia la app, routing del cliente, DOM virtual
-- Pros: interactividad rica e interfaces fluidas
-- Contras: coste de carga inicial, SEO requiere soluciones alternativas
-
-<!-- Speaker notes: 1m — Describir por qué las SPAs eran atractivas: ergonomía del desarrollador y apps de un solo lenguaje. Mencionar soluciones que mitigaron las desventajas (pre-rendering, SSR). -->
+<!-- Speaker notes: 1m — Explain progressive enhancement: serve good HTML first, layer JS for richer behaviors. This improves resilience and accessibility. -->
 
 ---
 
-## Estrategias de Renderizado (Resumen)
+## HTML5 & Browser APIs (Why the Browser Got Smarter)
 
-- CSR: Renderizado en el Cliente — la app arranca en el navegador
-- SSR: Renderizado en el Servidor — HTML construido por solicitud
-- SSG: Generación de Sitio Estático — HTML construido en tiempo de build
-- ISR: Regeneración Estática Incremental — regeneración híbrida bajo demanda
+- Fetch, History API, Modules, Service Workers
+- Enabled offline, routing, finer-grained network control
+
+<!-- Speaker notes: 45s — Quick recap of modern browser primitives that made client features easier and more robust. -->
+
+---
+
+## SPA Era: React / Vue / Angular
+
+- Single bundle boots the app, client routing, virtual DOM
+- Pros: rich interactivity and fluid UIs
+- Cons: initial load cost, SEO/workarounds required
+
+<!-- Speaker notes: 1m — Describe why SPAs were attractive: developer ergonomics and single-language apps. Mention solutions that mitigated drawbacks (pre-rendering, SSR). -->
+
+---
+
+## Rendering Strategies (Overview)
+
+- CSR: Client-Side Rendering — app boots in the browser
+- SSR: Server-Side Rendering — HTML built per-request
+- SSG: Static Site Generation — HTML built at build time
+- ISR: Incremental Static Regeneration — hybrid regeneration on demand
 
 ```mermaid
 flowchart TD
-    A[Solicitud del Navegador] --> B{Estrategia}
-    B -->|CSR| C[Servir HTML vacío + bundle JS]
-    C --> D[El navegador ejecuta JS]
-    D --> E[Obtener datos de la API]
-    E --> F[Renderizar UI en el cliente]
-    B -->|SSR| G[El servidor obtiene datos]
-    G --> H[Renderizar HTML completo]
-    H --> I[Enviar al navegador]
-    I --> J[Hidratar para interactividad]
-    B -->|SSG| K[Tiempo de build: renderizar todas las páginas]
-    K --> L[Servir desde CDN]
-    L --> M[Sin servidor por solicitud]
+    A[Browser Request] --> B{Strategy}
+    B -->|CSR| C[Serve empty HTML + JS bundle]
+    C --> D[Browser executes JS]
+    D --> E[Fetch data from API]
+    E --> F[Render UI client-side]
+    B -->|SSR| G[Server fetches data]
+    G --> H[Render full HTML]
+    H --> I[Send to browser]
+    I --> J[Hydrate for interactivity]
+    B -->|SSG| K[Build time: render all pages]
+    K --> L[Serve from CDN]
+    L --> M[No server needed per request]
 ```
 
-<!-- Speaker notes: 45s — Guía de una línea sobre cuándo usar cada estrategia. Profundizaremos a continuación. -->
+<!-- Speaker notes: 45s — One-line when-to-use guidance for each strategy. We'll deep-dive next. -->
 
 ---
 
-## CSR en Profundidad
+## CSR Deep Dive
 
-- El navegador descarga JS, monta la app y obtiene datos en el cliente
-- Ideal para apps muy interactivas donde el SEO no es crítico
-- Atención al tamaño del bundle y al impacto en el TTI
+- Browser downloads JS, mounts app, fetches data client-side
+- Great for highly interactive apps where SEO is not critical
+- Watch out for bundle size and TTI impact
 
-<!-- Speaker notes: 1m — Casos de uso de ejemplo: dashboards, editores complejos, apps internas. Mencionar code-splitting y lazy loading. -->
-
----
-
-## SSR en Profundidad
-
-- El servidor renderiza HTML completo por solicitud; el cliente hidrata para la interactividad
-- Pros: LCP rápido, mejor SEO, UX inicial más simple
-- Contras: coste del servidor, latencia potencial, complejidad con streaming
-
-<!-- Speaker notes: 1m — Explicar cómo funciona la hidratación: el HTML del servidor + el JS del cliente adjuntan manejadores de eventos y estado. -->
+<!-- Speaker notes: 1m — Example use-cases: dashboards, complex editors, internal apps. Mention code-splitting & lazy loading. -->
 
 ---
 
-## SSG en Profundidad
+## SSR Deep Dive
 
-- Páginas renderizadas en tiempo de build y servidas desde CDN
-- Pros: extremadamente rápido, bajo coste de servidor, caché simple
-- Contras: requiere rebuilds para datos frescos, no ideal para páginas por usuario
+- Server renders full HTML per request; client hydrates for interactivity
+- Pros: fast LCP, better SEO, simpler initial UX
+- Cons: server cost, potential latency, complexity with streaming
 
-<!-- Speaker notes: 45s — Usar ejemplo: páginas de marketing, documentación, blogs. Mencionar enfoques incrementales (ISR). -->
-
----
-
-## ISR (Regeneración Estática Incremental)
-
-- Híbrido: servir páginas estáticas, regenerar bajo demanda o por intervalo
-- Ideal para sitios mayormente estáticos que cambian ocasionalmente (páginas de producto)
-
-<!-- Speaker notes: 1m — Explicar cómo ISR reduce el dolor del rebuild regenerando solo las páginas desactualizadas. Ideal a escala. -->
+<!-- Speaker notes: 1m — Explain how hydration works: server HTML + client JS attach event handlers and state. -->
 
 ---
 
-## La Hidratación Explicada
+## SSG Deep Dive
 
-- El servidor envía HTML; el JS del lado del cliente "hidrata" para añadir interactividad
-- Coste: analizar y ejecutar JS, re-ejecutar la lógica de renderizado en el navegador
+- Pages rendered at build time and served from CDN
+- Pros: blazing fast, low server cost, simple caching
+- Cons: rebuilds required for fresh data, not ideal for per-user pages
 
-<!-- Speaker notes: 1m — Analogía: la hidratación es como decorar un pastel que fue horneado en el servidor — añades decoraciones interactivas en el navegador. Explicar los motivos del coste y cómo reducirlo. -->
-
----
-
-## Estrategias de Hidratación
-
-- Hidratación Progresiva / Parcial — hidratar solo las partes necesarias
-- Arquitectura de Islas — aislar componentes interactivos
-- Hidratación diferida y lazy-loading de componentes pesados
-
-<!-- Speaker notes: 1m — Mencionar proyectos y patrones: Astro (islas), experimentos de hidratación parcial, triggers de hidratación client:idle. -->
+<!-- Speaker notes: 45s — Use example: marketing pages, docs, blogs. Mention incremental approaches (ISR). -->
 
 ---
 
-## Streaming y Renderizado Progresivo
+## ISR (Incremental Static Regeneration)
 
-- Transmitir HTML del servidor en partes para que el contenido above-the-fold llegue primero
-- Mejora el rendimiento percibido y el LCP
+- Hybrid: serve static pages, regenerate on demand or on interval
+- Best for mostly-static sites that occasionally change (product pages)
 
-<!-- Speaker notes: 1m — Mencionar streaming de Node, el renderizador de servidor con streaming de React 18 y la diferencia entre streaming HTML e hidratación completa. -->
-
----
-
-## Renderizado Edge y CDNs
-
-- Renderizar cerca de los usuarios (funciones edge) para reducir la latencia
-- Compensaciones: arranques en frío, runtime limitado, memoria menor
-
-<!-- Speaker notes: 45s — Explicar dónde tiene sentido el edge: personalización en el edge, cómputo geodistribuido para menor latencia. -->
+<!-- Speaker notes: 1m — Explain how ISR reduces rebuild pain by regenerating only stale pages. Great for scale. -->
 
 ---
 
-## Frameworks Full-Stack y Especializados
+## Hydration Explained
 
-A menudo puentes entre frontend y backend, ofreciendo estrategias de renderizado especializadas.
+- Server sends HTML; client-side JS "hydrates" to add interactivity
+- Cost: parse + execute JS, re-run render logic in browser
 
-- **Next.js**: El framework full-stack basado en React más popular. Simplifica funcionalidades complejas como SSR, SSG y rutas API, siendo el estándar para apps React listas para producción.
-- **Astro**: Una herramienta "agnóstica al framework" diseñada para sitios con mucho contenido (como blogs o documentación). Usa una "Arquitectura de Islas" para no enviar JavaScript por defecto, hidratando solo las partes interactivas.
-- **TanStack**: Conocido por TanStack Query (obtención de datos), este ecosistema ha expandido a TanStack Start, un framework full-stack diseñado para ser una alternativa altamente type-safe y amigable al desarrollador frente a Next.js.
-
----
-
-## Server Components (Concepto)
-
-- Piezas de UI solo-servidor renderizadas como HTML en el servidor
-- Reduce el JS del cliente porque la lógica pesada permanece en el servidor
-- Se componen con componentes del cliente para la interactividad
-
-<!-- Speaker notes: 1m — Vista de alto nivel: los Server Components no reemplazan al SSR, sino que son un modelo de composición para minimizar el código del cliente. Mencionar React Server Components como ejemplo. -->
+<!-- Speaker notes: 1m — Analogy: hydration is like topping a cake that was baked on the server — you add interactive decorations in the browser. Explain cost reasons and how to reduce it. -->
 
 ---
 
-## Server Actions (Concepto)
+## Hydration Strategies
 
-- Funciones del lado del servidor invocadas desde la UI (sin endpoint API separado)
-- Simplifica el manejo de formularios y efectos secundarios de forma segura en el servidor
+- Progressive / Partial Hydration — hydrate only needed parts
+- Islands Architecture — isolate interactive components
+- Deferred hydration & lazy-loading heavy components
 
-<!-- Speaker notes: 1m — Describir cómo los server actions permiten ejecutar mutaciones en el servidor sin el boilerplate de fetch del cliente. Ideal para seguridad y simplicidad. -->
+<!-- Speaker notes: 1m — Mention projects and patterns: Astro (islands), partial hydration experiments, client:idle hydration triggers. -->
+
+---
+
+## Streaming & Progressive Rendering
+
+- Stream HTML from server in chunks so above-the-fold arrives first
+- Improves perceived performance and LCP
+
+<!-- Speaker notes: 1m — Mention Node streaming, React 18 streaming server renderer, and difference between streaming HTML and full hydration. -->
+
+---
+
+## Edge Rendering & CDNs
+
+- Render near users (edge functions) to reduce latency
+- Trade-offs: cold starts, limited runtime, smaller memory
+
+<!-- Speaker notes: 45s — Explain where edge makes sense: personalization at the edge, geodistributed compute for lower latency. -->
+
+---
+
+## Full-Stack & Specialized Frameworks
+
+These often bridge the gap between frontend and backend, offering specialized rendering strategies.
+
+- **Next.js**: The most popular React-based full-stack framework. It simplifies complex features like Server-Side Rendering (SSR), Static Site Generation (SSG), and API routes, making it the standard for production-ready React apps.
+- **Astro**: A "framework-agnostic" tool designed for content-heavy sites (like blogs or documentation). It uses an "Islands Architecture" to ship zero JavaScript by default, only hydrating interactive parts of the page.
+- **TanStack**: While best known for TanStack Query (data fetching), this ecosystem has expanded into TanStack Start, a full-stack framework designed to provide a highly type-safe, developer-friendly alternative to Next.js.
+
+---
+
+## Server Components (Concept)
+
+- Server-only UI pieces rendered as HTML on server
+- Reduces client JS because heavy logic stays server-side
+- Compose with client components for interactivity
+
+<!-- Speaker notes: 1m — High-level view: Server Components are not a replacement for SSR, but a composition model to minimize client code. Mention React Server Components as example. -->
+
+---
+
+## Server Actions (Concept)
+
+- Server-side functions invoked from UI (no separate API endpoint)
+- Simplifies form handling and side-effects securely on server
+
+<!-- Speaker notes: 1m — Describe how server actions let you run mutations on the server without client-side fetch boilerplate. Great for security and simplicity. -->
 
 ---
 
@@ -678,10 +678,10 @@ export async function createPost(formData: FormData) {
 ```
 
 ```tsx
-// page.tsx — el formulario enlaza la acción directamente
+// page.tsx — form binds action directly
 <form action={createPost}>
   <input name="title" />
-  <button type="submit">Crear</button>
+  <button type="submit">Create</button>
 </form>
 ```
 
@@ -700,81 +700,81 @@ export const createPost = createServerFn({ method: "POST" })
   });
 ```
 
-Los server actions se ejecutan exclusivamente en el servidor — sin ruta API, entradas validadas, secretos seguros.
+Server actions run exclusively on the server — no API route needed, inputs are validated, secrets stay safe.
 
 </div>
 </div>
 
 ---
 
-## TypeScript y Seguridad de Tipos
+## TypeScript & Type Safety
 
 ```ts
-// Interfaces y tipos
+// Interfaces & types
 interface User {
   id: number;
   email: string;
   role: "admin" | "user";
 }
 
-// Genéricos
+// Generics
 async function fetchData<T>(url: string): Promise<T> {
   const res = await fetch(url);
   return res.json() as T;
 }
 
-// Tipo inferido — sin anotación necesaria
+// Inferred type — no annotation needed
 const users = await fetchData<User[]>("/api/users");
 //    ^? User[]
 ```
 
-- Un solo lenguaje (TypeScript) en frontend y backend — tipos compartidos, sin discrepancias
-- Funciona de forma nativa con Next.js, TanStack, Drizzle y Zod
+- One language (TypeScript) across frontend and backend — shared types, no mismatch
+- Works natively with Next.js, TanStack, Drizzle, and Zod
 
 ---
 
-## Bundlers y Herramientas de Build
+## Bundlers & Build Tools
 
-| Herramienta   | Rol                        | Destacados                            |
-| ------------- | -------------------------- | ------------------------------------- |
-| **Vite**      | Servidor de dev + bundler  | ⚡ ESM nativo, HMR rápido             |
-| **Turbopack** | Bundler de Next.js (Rust)  | ⚡⚡ Compilación incremental          |
-| **esbuild**   | Compilador y bundler TS/JS | ⚡⚡⚡ 10–100× más rápido que Webpack |
-| **Webpack**   | Maduro, configurable       | Battle-tested, gran ecosistema        |
+| Tool          | Role                     | Highlights                         |
+| ------------- | ------------------------ | ---------------------------------- |
+| **Vite**      | Dev server + bundler     | ⚡ Native ESM, fast HMR            |
+| **Turbopack** | Next.js bundler (Rust)   | ⚡⚡ Incremental compilation       |
+| **esbuild**   | TS/JS compiler & bundler | ⚡⚡⚡ 10–100× faster than Webpack |
+| **Webpack**   | Mature, configurable     | Battle-tested, large ecosystem     |
 
 ```bash
-# Crear proyecto Vite + React + TypeScript
+# Scaffold a Vite + React + TypeScript project
 pnpm create vite my-app --template react-ts
 
-# esbuild — compilar y minificar directamente
+# esbuild — bundle and minify directly
 esbuild src/index.ts --bundle --outfile=dist/out.js --minify
 ```
 
-Vite es el estándar de facto para nuevos proyectos; Turbopack es el bundler de desarrollo por defecto en Next.js 15+.
+Vite is the de-facto standard for new projects; Turbopack ships as the default dev bundler in Next.js 15+.
 
 ---
 
-## Estrategia de Testing
+## Testing Strategy
 
-| Capa        | Herramienta                          | Qué prueba                          |
-| ----------- | ------------------------------------ | ----------------------------------- |
-| Unitario    | [Vitest](https://vitest.dev)         | Funciones, utilidades, lógica pura  |
-| Componente  | Testing Library                      | Comportamiento de componentes React |
-| Integración | Supertest / MSW                      | Handlers de API, consultas BD       |
-| E2E         | [Playwright](https://playwright.dev) | Flujos de usuario completos         |
+| Layer       | Tool                                 | What it tests                    |
+| ----------- | ------------------------------------ | -------------------------------- |
+| Unit        | [Vitest](https://vitest.dev)         | Functions, utilities, pure logic |
+| Component   | Testing Library                      | React/Svelte component behavior  |
+| Integration | Supertest / MSW                      | API handlers, DB queries         |
+| E2E         | [Playwright](https://playwright.dev) | Full user flows in real browser  |
 
 ---
 
-## Monorepos y Workspaces
+## Monorepos & Workspaces
 
 <div class="columns">
 <div class="columns-left">
 
-**¿Por qué monorepo?**
+**Why monorepo?**
 
-- Compartir tipos, utilidades y configuraciones entre workspaces
-- Commits atómicos entre frontend y backend
-- Un solo `node_modules` y lockfile
+- Share types, utils, and configs across workspaces
+- Atomic commits across frontend + backend
+- Single `node_modules` and lockfile
 
 **pnpm workspaces** (`pnpm-workspace.yaml`)
 
@@ -802,82 +802,82 @@ packages:
 }
 ```
 
-Turborepo cachea las salidas de tareas y las ejecuta en paralelo — builds de CI dramáticamente más rápidos.
+Turborepo caches task outputs and runs tasks in parallel — dramatically faster CI builds.
 
 </div>
 </div>
 
 ---
 
-## Patrones de Obtención de Datos y Caché
+## Data Fetching Patterns & Caching
 
-- Fetch en servidor cuando controlas secretos o necesitas SSR
-- Fetch en cliente para UI optimista y refresco en segundo plano
-- Caché: CDN, cache-control, SWR/stale-while-revalidate
+- Server fetch when you control secrets or need SSR
+- Client fetch for optimistic UI and background refresh
+- Caching: CDN, cache-control, SWR/stale-while-revalidate
 
-<!-- Speaker notes: 1m — Orientación sobre cómo elegir patrones y usar cabeceras de caché y librerías de caché del cliente para la UX. -->
-
----
-
-## Seguridad y Consideraciones Operativas
-
-- Mantener secretos en el servidor; evitar credenciales en los bundles
-- Rate-limit en APIs; validar entradas en el servidor; configurar CORS correctamente
-- Observabilidad: logs, métricas, trazabilidad para funciones SSR/edge
-
-<!-- Speaker notes: 45s — Enfatizar diferencias de coste operativo entre SSR y SSG y por qué importa el monitoreo. -->
+<!-- Speaker notes: 1m — Provide guidance on choosing patterns and using cache headers and client cache libraries for UX. -->
 
 ---
 
-## Checklist de Rendimiento
+## Security & Operational Concerns
 
-- Medir: LCP, TTFB, TTI (o Interaction to Next Paint), CLS
-- Reducir tamaño del bundle, code-split, lazy-load, diferir JS no crítico
-- Usar CDN, activar caché, preconectar orígenes críticos
+- Keep secrets server-side; avoid embedding credentials in bundles
+- Rate-limit APIs; validate inputs server-side; set CORS properly
+- Observability: logs, metrics, tracing for SSR/edge functions
 
-<!-- Speaker notes: 1m — Priorización rápida: primero optimizar LCP/TTFB, luego TTI. Usar Lighthouse o WebPageTest para métricas. -->
+<!-- Speaker notes: 45s — Stress operational cost differences between SSR and SSG and why monitoring matters. -->
 
 ---
 
-## Ejemplo: Hidratación (pseudocódigo)
+## Performance Checklist
+
+- Measure: LCP, TTFB, TTI (or Interaction to Next Paint), CLS
+- Reduce bundle size, code-split, lazy-load, defer non-critical JS
+- Use CDN, enable caching, preconnect critical origins
+
+<!-- Speaker notes: 1m — Quick prioritization: first optimize LCP/TTFB, then TTI. Use Lighthouse or WebPageTest for metrics. -->
+
+---
+
+## Example: Hydration (pseudo-code)
 
 ```html
-<!-- salida del servidor -->
-<div id="app"><!-- HTML pre-renderizado aquí --></div>
+<!-- server output -->
+<div id="app"><!-- pre-rendered HTML here --></div>
 <script src="/assets/app.bundle.js"></script>
 <script>
-  // arranque del lado del cliente (pseudo)
+  // client-side boot (pseudo)
   import("/assets/app.bundle.js").then(({ hydrate }) =>
     hydrate(document.getElementById("app")),
   );
 </script>
 ```
 
-<!-- Speaker notes: 1m — Explicar la línea de tiempo: HTML analizado -> primera pintura -> JS ejecutado -> hydrate adjunta manejadores de eventos y reutiliza el markup. -->
+<!-- Speaker notes: 1m — Explain timeline: HTML parsed -> first paint -> JS executes -> hydrate attaches event handlers and reuses markup. -->
 
 ---
 
-## Ejemplo: SSR vs SSG (pseudo)
+## Example: SSR vs SSG (pseudo)
 
 ```js
-// SSR (por solicitud)
+// SSR (per-request)
 app.get("/post/:id", async (req, res) => {
   const post = await db.getPost(req.params.id);
   res.send(renderToHtml(<Post post={post} />));
 });
 
-// SSG (tiempo de build)
+// SSG (build-time)
 const posts = await fetchAllPosts();
 for (const p of posts) {
   writeFile(`/out/post/${p.id}.html`, renderToHtml(<Post post={p} />));
 }
 ```
 
-<!-- Speaker notes: 1m — Enfatizar las compensaciones: SSR da los datos más frescos; SSG da la entrega edge más rápida. -->
+<!-- Speaker notes: 1m — Emphasize trade-offs: SSR gives freshest data; SSG gives fastest edge delivery. -->
 
 ---
 
-## Ejemplo: Server Component y Server Action Mínimos (pseudo)
+## Example: Minimal Server Component & Server Action (pseudo)
 
 ```jsx
 // Server Component (pseudo)
@@ -899,22 +899,22 @@ export async function createComment(formData) {
 }
 ```
 
-<!-- Speaker notes: 1m — Aclarar que los server components solo se ejecutan en el servidor y pueden acceder a secretos; los server actions se invocan desde el cliente pero se ejecutan en el servidor. Estos son patrones conceptuales específicos del framework. -->
+<!-- Speaker notes: 1m — Clarify that server components run only on server and can access secrets; server actions are invoked from the client but execute on server. These are framework-specific conceptual patterns. -->
 
 ---
 
-## Opciones de Despliegue y Hosting
+## Deployment & Hosting Options
 
-- Estático (CDN) — para SSG
-- Serverless / Lambdas — para SSR/ISR
-- Funciones Edge — para personalización de baja latencia
-- Servidores tradicionales — control total y cómputo pesado
+- Static (CDN) — for SSG
+- Serverless / Lambdas — for SSR/ISR
+- Edge Functions — for low-latency personalization
+- Traditional servers — full control and heavy compute
 
-<!-- Speaker notes: 45s — Dar recomendaciones rápidas y compensaciones de coste/operación. -->
+<!-- Speaker notes: 45s — Give quick recommendations and cost/operational trade-offs. -->
 
 ---
 
-## CI/CD y Contenedores
+## CI/CD & Containers
 
 <div class="columns">
 <div class="columns-left">
@@ -959,29 +959,29 @@ CMD ["node", "server.js"]
 
 ---
 
-## El Futuro del Fullstack
+## The Future of Fullstack
 
-- **Desarrollo asistido por IA** — Copilot, Claude, Cursor: autocompletado → generación de características completas
-- **Edge y CDN-first** — la lógica se ejecuta cerca del usuario (Cloudflare Workers, Vercel Edge)
-- **WebAssembly (WASM)** — ejecutar módulos Rust/Go/Python en el navegador a velocidad casi nativa
-- **Renacimiento servidor-first** — React Server Components, Astro, Remix empujan la lógica de vuelta al servidor
-- **Full-stack type-safe** — tRPC, Drizzle, Zod: seguridad de tipos de extremo a extremo sin generación de código
+- **AI-assisted development** — Copilot, Claude, Cursor: autocomplete → full feature generation
+- **Edge & CDN-first** — logic runs close to the user (Cloudflare Workers, Vercel Edge)
+- **WebAssembly (WASM)** — run Rust/Go/Python modules in the browser at near-native speed
+- **Server-first renaissance** — React Server Components, Astro, Remix push logic back to server
+- **Type-safe full-stack** — tRPC, Drizzle, Zod: end-to-end type safety without code generation
 
 ---
 
-## Lecturas Adicionales
+## Further Reading
 
-- Docs de Next.js: https://nextjs.org/docs
-- RFC de React Server Components: https://github.com/reactjs/rfcs
+- Next.js docs: https://nextjs.org/docs
+- React Server Components RFC: https://github.com/reactjs/rfcs
 - Astro: https://astro.build
-- Artículos: "The Cost of Hydration", "Islands Architecture"
+- Articles: "The Cost of Hydration", "Islands Architecture"
 
-<!-- Speaker notes: 30s — Sugerir orden de lectura: primero la documentación, luego artículos más profundos. -->
+<!-- Speaker notes: 30s — Suggest reading order: docs first, then deeper posts. -->
 
 ---
 
-## Preguntas y Respuestas
+## Q&A
 
-- Abierto a preguntas
+- Open for questions
 
-<!-- Speaker notes: Tiempo restante — invitar preguntas específicas sobre hidratación, SSR o despliegue. -->
+<!-- Speaker notes: Remaining time — invite specific questions about hydration, SSR, or deployment. -->
