@@ -40,6 +40,7 @@ Create following structure under `src/`, to add server/client components, server
     ├── actions
     ├── app
     └── components
+    └── db
 ```
 
 ### Server component (server-side by default)
@@ -49,6 +50,7 @@ Server components are the default in the App Router, so if parent components don
 Create `src/components/current-time.tsx`:
 
 ```tsx
+// COPY: next-app/src/components/current-time.tsx
 export default function CurrentTime() {
   const now = new Date().toISOString();
   return (
@@ -62,6 +64,7 @@ export default function CurrentTime() {
 Use it from a page (for example `src/app/page.tsx`):
 
 ```tsx
+// COPY: next-app/src/app/page.tsx
 import CurrentTime from "@/components/current-time.tsx";
 
 export default function Home() {
