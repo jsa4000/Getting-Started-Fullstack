@@ -18,6 +18,10 @@
       {
         "command": "copyMarkerToFile.create",
         "title": "Copy Marker: Create / Update File"
+      },
+      {
+        "command": "copyMarkerToFile.runInTerminal",
+        "title": "Copy Marker: Run in Terminal"
       }
     ]
   },

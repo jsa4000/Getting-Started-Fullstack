@@ -11,6 +11,8 @@
 Run following command to check if you prequisites are installed and their versions:
 
 ```bash
+# TERM:
+
 # Check Node.js version
 node -v
 # Check package manager version (replace with your package manager)

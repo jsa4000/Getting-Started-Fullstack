@@ -5,6 +5,33 @@ import * as vscode from "vscode";
 // Matches: // COPY: path/to/file  |  # COPY: path/to/file  |  /* COPY: path/to/file */
 const COPY_PATTERN = /^[\s]*(?:\/\/|#|\/\*)\s*COPY:\s*(.+?)(?:\s*\*\/)?$/;
 
+// Matches: // TERM:  |  // TERM: my-terminal  |  # TERM:  |  /* TERM: name */
+const TERM_PATTERN = /^[\s]*(?:\/\/|#|\/\*)\s*TERM:\s*(.*?)(?:\s*\*\/)?$/;
+
+class TermMarkerCodeLensProvider implements vscode.CodeLensProvider {
+  private _onDidChangeCodeLenses = new vscode.EventEmitter<void>();
+  readonly onDidChangeCodeLenses = this._onDidChangeCodeLenses.event;
+
+  provideCodeLenses(document: vscode.TextDocument): vscode.CodeLens[] {
+    const lenses: vscode.CodeLens[] = [];
+    for (let i = 0; i < document.lineCount; i++) {
+      const match = TERM_PATTERN.exec(document.lineAt(i).text);
+      if (match) {
+        const terminalName = match[1].trim() || undefined;
+        const range = new vscode.Range(i, 0, i, document.lineAt(i).text.length);
+        lenses.push(
+          new vscode.CodeLens(range, {
+            title: `$(terminal) Run in Terminal${terminalName ? `: ${terminalName}` : ""}`,
+            command: "copyMarkerToFile.runInTerminal",
+            arguments: [document, i, terminalName],
+          }),
+        );
+      }
+    }
+    return lenses;
+  }
+}
+
 class CopyMarkerCodeLensProvider implements vscode.CodeLensProvider {
   private _onDidChangeCodeLenses = new vscode.EventEmitter<void>();
   readonly onDidChangeCodeLenses = this._onDidChangeCodeLenses.event;
@@ -98,6 +125,45 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCodeLensProvider(
       { pattern: "**/*" },
       new CopyMarkerCodeLensProvider(),
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerCodeLensProvider(
+      { pattern: "**/*" },
+      new TermMarkerCodeLensProvider(),
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "copyMarkerToFile.runInTerminal",
+      async (
+        document: vscode.TextDocument,
+        lineIndex: number,
+        terminalName: string | undefined,
+      ) => {
+        const content = extractContent(document, lineIndex);
+        if (content === null) {
+          vscode.window.showErrorMessage(
+            "Could not find code block content for this TERM marker.",
+          );
+          return;
+        }
+
+        let terminal: vscode.Terminal | undefined;
+        if (terminalName) {
+          terminal = vscode.window.terminals.find((t) => t.name === terminalName);
+        }
+        if (!terminal) {
+          terminal = terminalName
+            ? vscode.window.createTerminal(terminalName)
+            : vscode.window.activeTerminal ?? vscode.window.createTerminal();
+        }
+
+        terminal.show(true);
+        terminal.sendText(content);
+      },
     ),
   );
 
