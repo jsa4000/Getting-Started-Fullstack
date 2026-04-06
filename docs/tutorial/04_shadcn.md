@@ -164,6 +164,7 @@ Go to [tweakcn website](https://tweakcn.com/editor/theme) to customize the style
 Select the theme you want to customize and click on the "Code" button to get the URL or CSS code of the customized theme.
 
 ```css
+/* COPY: next-app/src/app/globals.css */
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -361,4 +362,457 @@ Or run the following command to add the customized theme to your project:
 
 ```bash
 pnpm dlx shadcn@latest add https://tweakcn.com/r/themes/claude.json
+```
+
+## Style Contacts
+
+```tsx
+// COPY: next-app/src/components/contact/contact-form.tsx
+"use client";
+
+import React, { useState } from "react";
+import { sendContact } from "@/actions/contact";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import { AlertCircleIcon, CheckCircle2Icon, SendIcon } from "lucide-react";
+
+interface ContactFormProps {
+  onSuccess: (name: string) => void;
+}
+
+export function ContactForm({ onSuccess }: ContactFormProps) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    setIsPending(true);
+    const formData = new FormData(e.currentTarget);
+    const result: { error?: unknown; success?: boolean } =
+      await sendContact(formData);
+    setIsPending(false);
+    if (result?.error) {
+      setError(
+        typeof result.error === "string"
+          ? result.error
+          : JSON.stringify(result.error),
+      );
+    } else {
+      setSubmittedName(name);
+      setSubmitted(true);
+      onSuccess(name);
+      setName("");
+      setEmail("");
+      setMessage("");
+    }
+  }
+
+  function handleSendAnother() {
+    setSubmitted(false);
+    setSubmittedName("");
+  }
+
+  return (
+    <Card className="shadow-lg border-border/60 h-full">
+      <CardHeader className="pb-4">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="h-5 w-1 rounded-full bg-primary" />
+          <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            Contact Form
+          </span>
+        </div>
+        <CardTitle className="text-2xl font-semibold tracking-tight">
+          Send a Message
+        </CardTitle>
+        <CardDescription className="text-sm leading-relaxed">
+          Have a question or just want to say hello? Drop us a line and
+          we&apos;ll get back to you.
+        </CardDescription>
+      </CardHeader>
+
+      <Separator className="mx-4 w-auto" />
+
+      <CardContent className="pt-5">
+        {submitted ? (
+          <div className="flex flex-col items-center justify-center gap-4 py-10 text-center">
+            <div className="flex size-14 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/30">
+              <CheckCircle2Icon className="size-7 text-primary" />
+            </div>
+            <div className="space-y-1">
+              <p className="text-base font-semibold">
+                Thanks, {submittedName || "there"}!
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Your message has been received. We&apos;ll be in touch soon.
+              </p>
+            </div>
+            <Button variant="outline" size="sm" onClick={handleSendAnother}>
+              Send another message
+            </Button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="grid gap-1.5">
+              <Label htmlFor="name" className="text-sm font-medium">
+                Full Name
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Jane Smith"
+                autoComplete="name"
+                required
+              />
+            </div>
+
+            <div className="grid gap-1.5">
+              <Label htmlFor="email" className="text-sm font-medium">
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="jane@example.com"
+                autoComplete="email"
+                required
+              />
+            </div>
+
+            <div className="grid gap-1.5">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="message" className="text-sm font-medium">
+                  Message
+                </Label>
+                <span
+                  className={`text-xs tabular-nums transition-colors ${
+                    message.length > 450
+                      ? "text-destructive"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {message.length} / 500
+                </span>
+              </div>
+              <Textarea
+                id="message"
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Tell us what's on your mind…"
+                className="min-h-32 resize-none"
+                required
+                minLength={10}
+                maxLength={500}
+              />
+            </div>
+
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircleIcon />
+                <AlertTitle>Something went wrong</AlertTitle>
+                <AlertDescription className="wrap-break-word">
+                  {error}
+                </AlertDescription>
+              </Alert>
+            )}
+
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="w-full gap-2 font-medium"
+            >
+              <SendIcon className="size-4" />
+              {isPending ? "Sending…" : "Send Message"}
+            </Button>
+          </form>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+```tsx
+// COPY: next-app/src/components/contact/contact-card.tsx
+import type { Contact } from "@/db/schema";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { MailIcon } from "lucide-react";
+
+function getInitials(name: string) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+}
+
+const AVATAR_PALETTE = [
+  "bg-amber-500/20 text-amber-400",
+  "bg-orange-500/20 text-orange-400",
+  "bg-rose-500/20 text-rose-400",
+  "bg-emerald-500/20 text-emerald-400",
+  "bg-sky-500/20 text-sky-400",
+  "bg-violet-500/20 text-violet-400",
+  "bg-teal-500/20 text-teal-400",
+  "bg-pink-500/20 text-pink-400",
+];
+
+function getAvatarColor(name: string) {
+  const hash = name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  return AVATAR_PALETTE[hash % AVATAR_PALETTE.length];
+}
+
+interface ContactCardProps {
+  contact: Contact;
+  isNew?: boolean;
+}
+
+export function ContactCard({ contact, isNew }: ContactCardProps) {
+  return (
+    <Card
+      size="sm"
+      className={cn(
+        "transition-all duration-500 group/contact-card",
+        isNew && "ring-2 ring-primary/40 bg-primary/5",
+      )}
+    >
+      <CardContent className="flex gap-3 items-start">
+        <Avatar size="lg" className="shrink-0 mt-0.5">
+          <AvatarFallback
+            className={cn(
+              "font-semibold text-xs",
+              getAvatarColor(contact.name),
+            )}
+          >
+            {getInitials(contact.name)}
+          </AvatarFallback>
+        </Avatar>
+
+        <div className="flex flex-col gap-1 min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-medium text-sm leading-none">
+              {contact.name}
+            </span>
+            {isNew && <Badge className="h-4 text-[10px] px-1.5">New</Badge>}
+          </div>
+
+          <a
+            href={`mailto:${contact.email}`}
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors truncate group/link"
+          >
+            <MailIcon className="size-3 shrink-0 opacity-60 group-hover/link:opacity-100 transition-opacity" />
+            <span className="truncate">{contact.email}</span>
+          </a>
+
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mt-0.5">
+            {contact.message}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+```tsx
+// COPY: next-app/src/components/contact/contact-list.tsx
+import type { Contact } from "@/db/schema";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ContactCard } from "./contact-card";
+import { InboxIcon } from "lucide-react";
+
+interface ContactListProps {
+  contacts: Contact[];
+  latestId: number | null;
+  isLoading?: boolean;
+}
+
+function ContactListSkeleton() {
+  return (
+    <div className="flex flex-col gap-3 p-1">
+      {[1, 2, 3].map((i) => (
+        <Card key={i} size="sm">
+          <CardContent className="flex gap-3 items-start">
+            <Skeleton className="size-10 rounded-full shrink-0 mt-0.5" />
+            <div className="flex flex-col gap-2 flex-1">
+              <Skeleton className="h-3.5 w-28" />
+              <Skeleton className="h-3 w-40" />
+              <Skeleton className="h-3 w-full" />
+              <Skeleton className="h-3 w-3/4" />
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="flex flex-col items-center justify-center gap-3 py-14 text-center">
+      <div className="flex size-12 items-center justify-center rounded-full bg-muted ring-1 ring-border">
+        <InboxIcon className="size-5 text-muted-foreground" />
+      </div>
+      <div className="space-y-1">
+        <p className="text-sm font-medium">No messages yet</p>
+        <p className="text-xs text-muted-foreground">
+          Be the first to send a message!
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export function ContactList({
+  contacts,
+  latestId,
+  isLoading,
+}: ContactListProps) {
+  return (
+    <Card className="shadow-lg border-border/60 h-full flex flex-col">
+      <CardHeader className="pb-4 shrink-0">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="h-5 w-1 rounded-full bg-primary" />
+          <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            Inbox
+          </span>
+        </div>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-2xl font-semibold tracking-tight">
+            All Messages
+          </CardTitle>
+          {!isLoading && contacts.length > 0 && (
+            <span className="text-sm tabular-nums text-muted-foreground">
+              {contacts.length} {contacts.length === 1 ? "message" : "messages"}
+            </span>
+          )}
+        </div>
+      </CardHeader>
+
+      <Separator className="mx-4 w-auto" />
+
+      <ScrollArea className="flex-1 min-h-0 max-h-150">
+        <div className="p-4">
+          {isLoading ? (
+            <ContactListSkeleton />
+          ) : contacts.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <div className="flex flex-col gap-3">
+              {contacts.map((contact) => (
+                <ContactCard
+                  key={contact.id}
+                  contact={contact}
+                  isNew={contact.id === latestId}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </ScrollArea>
+    </Card>
+  );
+}
+```
+
+```tsx
+// COPY: next-app/src/app/contact/page.tsx
+"use client";
+
+import { useEffect, useState } from "react";
+import { getContacts } from "@/actions/contact";
+import type { Contact } from "@/db/schema";
+import { ContactForm } from "@/components/contact/contact-form";
+import { ContactList } from "@/components/contact/contact-list";
+import { MessageSquareIcon } from "lucide-react";
+
+export default function ContactPage() {
+  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [latestId, setLatestId] = useState<number | null>(null);
+
+  useEffect(() => {
+    getContacts().then((data) => {
+      setContacts(data);
+      setIsLoading(false);
+    });
+  }, []);
+
+  async function handleSuccess(_name: string) {
+    const data = await getContacts();
+    setContacts(data);
+    if (data.length > 0) {
+      setLatestId(data[data.length - 1].id);
+    }
+  }
+
+  return (
+    <main className="min-h-screen px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        {/* Page header */}
+        <div className="mb-10 space-y-3">
+          <div className="flex items-center gap-2">
+            <div className="flex size-8 items-center justify-center rounded-lg bg-primary/20 ring-1 ring-primary/30">
+              <MessageSquareIcon className="size-4 text-primary" />
+            </div>
+            <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              Get in touch
+            </span>
+          </div>
+
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            Contact Us
+          </h1>
+
+          <p className="max-w-xl text-base text-muted-foreground leading-relaxed">
+            Have a question, feedback, or just want to say hi? We read every
+            message and get back as fast as we can.
+          </p>
+
+          <div className="h-px w-16 bg-primary rounded-full" />
+        </div>
+
+        {/* Two-column layout */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
+          <ContactForm onSuccess={handleSuccess} />
+          <ContactList
+            contacts={contacts}
+            latestId={latestId}
+            isLoading={isLoading}
+          />
+        </div>
+      </div>
+    </main>
+  );
+}
 ```
