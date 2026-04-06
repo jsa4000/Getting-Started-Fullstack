@@ -45,6 +45,13 @@ Create following structure under `src/`, to add server/client components, server
     └── db
 ```
 
+```bash
+# TERM:
+
+# Create the recommended src/ hierarchy for a new Next.js app
+mkdir -p src/{actions,app,components,db}
+```
+
 ### Server component (server-side by default)
 
 Server components are the default in the App Router, so if parent components don't have `use client` at the top, every component is a server component. They run on the server and can fetch data, access secrets, and return JSX.
