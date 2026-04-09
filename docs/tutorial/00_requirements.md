@@ -6,6 +6,15 @@
 - Git (for version control)
 - Basic knowledge of JavaScript, HTML, and CSS
 
+## Install custom extensions
+
+Then install the generated `.vsix`.
+
+```bash
+# Install the generated .vsix file
+code --install-extension vscode-markdown-marker-tools/vscode-markdown-marker-tools-0.0.1.vsix
+```
+
 ## Verify Installation
 
 Run following command to check if you prequisites are installed and their versions:
